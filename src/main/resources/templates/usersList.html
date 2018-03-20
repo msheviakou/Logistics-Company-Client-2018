@@ -19,12 +19,12 @@
             <th>Login</th>
             <th>Password</th>
         </tr>
-        <tr th:each ="person : ${persons}">
-            <td th:utext="${person.id}">...</td>
-            <td th:utext="${person.name}">...</td>
-            <td th:utext="${person.post}">...</td>
-            <td th:utext="${person.login}">...</td>
-            <td th:utext="${person.password}">...</td>
+        <tr th:each ="user : ${users}">
+            <td th:utext="${user.id}">...</td>
+            <td th:utext="${user.name}">...</td>
+            <td th:utext="${user.post}">...</td>
+            <td th:utext="${user.login}">...</td>
+            <td th:utext="${user.password}">...</td>
         </tr>
     </table>
 </div>
