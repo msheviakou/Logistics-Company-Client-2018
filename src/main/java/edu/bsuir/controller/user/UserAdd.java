@@ -45,22 +45,19 @@ public class UserAdd {
                 && login != null && login.length() > 0
                 && password != null && password.length() > 0) {
 
-            edu.bsuir.model.Users newEmployee = new edu.bsuir.model.Users(number, firstName, position, login, password);
+            Users userToAdd = new Users(number, firstName, position, login, password);
 
             RestTemplate restTemplate = new RestTemplate();
 
-            HttpEntity<edu.bsuir.model.Users> requestBody = new HttpEntity<>(newEmployee);
+            HttpEntity<Users> requestBody = new HttpEntity<>(userToAdd);
 
-            ResponseEntity<edu.bsuir.model.Users> result = restTemplate.postForEntity(URL_USER, requestBody, edu.bsuir.model.Users.class);
-
-            // Logger: result.getStatusCode()
+            ResponseEntity<Users> result = restTemplate.postForEntity(URL_USER, requestBody, Users.class);
 
             if (result.getStatusCode() == HttpStatus.OK) {
-                //Users userAdded = result.getBody();
-                // Logger:
+                userToAdd = result.getBody();
+                if (userToAdd != null)
+                    return "redirect:/usersList";
             }
-
-            return "redirect:/usersList";
         }
 
         model.addAttribute("errorMessage", messageError);
