@@ -21,48 +21,42 @@ public class Authenticate {
     @Value("${url.authenticate}")
     private String URL_AUTHENTICATE;
 
-    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/authenticate"}, method = RequestMethod.GET)
     public String authentication(Model model) {
 
         Users userForm = new Users();
         model.addAttribute("userForm", userForm);
-
-        return "login";
+        return "authenticate";
     }
 
-    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/", "/authenticate"}, method = RequestMethod.POST)
     public String authentication(Model model, @ModelAttribute("userForm") Users userForm) {
 
         String login = userForm.getLogin();
         String password = userForm.getPassword();
 
         if (login != null && login.length() > 0
-                && password != null && password.length() > 0) {
+            && password != null && password.length() > 0) {
 
-            edu.bsuir.model.Users userToAuthenticate = new edu.bsuir.model.Users();
+            Users userToAuthenticate = new Users();
+
             userToAuthenticate.setLogin(login);
             userToAuthenticate.setPassword(password);
 
             RestTemplate restTemplate = new RestTemplate();
 
-            HttpEntity<edu.bsuir.model.Users> requestBody = new HttpEntity<>(userToAuthenticate);
+            HttpEntity<Users> requestBody = new HttpEntity<>(userToAuthenticate);
 
-            ResponseEntity<edu.bsuir.model.Users> result = restTemplate.postForEntity(URL_AUTHENTICATE, requestBody, edu.bsuir.model.Users.class);
-
-            // Logger: result.getStatusCode()
+            ResponseEntity<Users> result = restTemplate.postForEntity(URL_AUTHENTICATE, requestBody, Users.class);
 
             if (result.getStatusCode() == HttpStatus.OK) {
-                // Users userAuthenticated = result.getBody();
-                // Logger:
+                userToAuthenticate = result.getBody();
+                if (userToAuthenticate != null)
+                    return "redirect:/welcome";
             }
-
-            return "redirect:/welcome";
         }
 
         model.addAttribute("errorMessage", messageErrorAuthenticate);
-        return "login";
+        return "authenticate";
     }
-
-    @RequestMapping(value = {"/welcome"}, method = RequestMethod.GET)
-    public String welcome (){ return "welcome"; }
 }
