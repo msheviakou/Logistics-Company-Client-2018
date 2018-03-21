@@ -9,7 +9,7 @@
 <h1>Create a Person:</h1>
 
 <form th:action="@{/addUser}"
-      th:object="${personForm}" method="POST">
+      th:object="${userForm}" method="POST">
     Number:
     <input type="text" th:field="*{id}" />
     <br/>
