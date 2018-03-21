@@ -26,6 +26,7 @@ public class Authenticate {
 
         Users userForm = new Users();
         model.addAttribute("userForm", userForm);
+
         return "authenticate";
     }
 
