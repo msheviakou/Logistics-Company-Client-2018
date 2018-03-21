@@ -14,8 +14,13 @@
         Password:
         <input type="text" th:field="*{password}" />
         <br/>
+        Confirm password:
+        <input type="text" id="confirmPassword" name="confirmPassword" />
+        <br/>
         <input type="submit" value="Submit" />
     </form>
+
+    <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;"></div>
 </body>
 
 </html>
