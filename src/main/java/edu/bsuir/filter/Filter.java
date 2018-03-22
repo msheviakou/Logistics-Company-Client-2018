@@ -4,8 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.ZuulFilter;
+import org.springframework.stereotype.Component;
 
-public class SimpleFilter extends ZuulFilter {
+@Component
+public class Filter extends ZuulFilter {
 
     @Override
     public String filterType() {
@@ -27,7 +29,9 @@ public class SimpleFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
 
-        System.out.println("I'm working!");
+        String url = String.valueOf(request.getRequestURL());
+
+        System.out.println(url);
 
         return null;
     }
