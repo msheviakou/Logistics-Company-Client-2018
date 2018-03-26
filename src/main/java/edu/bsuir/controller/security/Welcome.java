@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class Welcome {
 
     @RequestMapping(value = {"/welcome"}, method = RequestMethod.GET)
-    public String welcome (){ return "welcome"; }
+    public String welcome(){ return "welcome"; }
 }

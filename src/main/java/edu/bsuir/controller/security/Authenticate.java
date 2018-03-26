@@ -21,6 +21,7 @@ public class Authenticate {
     @Value("${url.authenticate}")
     private String URL_AUTHENTICATE;
 
+
     @RequestMapping(value = {"/", "/authenticate"}, method = RequestMethod.GET)
     public String authentication(Model model) {
 
@@ -52,8 +53,10 @@ public class Authenticate {
 
             if (result.getStatusCode() == HttpStatus.OK) {
                 userToAuthenticate = result.getBody();
-                if (userToAuthenticate != null)
+                if (userToAuthenticate != null) {
+                    model.addAttribute("errorMessage", "");
                     return "redirect:/welcome";
+                }
             }
         }
 
