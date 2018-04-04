@@ -1,7 +1,6 @@
 package edu.bsuir.model;
 
 public class Users {
-
     private int id;
     private String post;
     private String login;

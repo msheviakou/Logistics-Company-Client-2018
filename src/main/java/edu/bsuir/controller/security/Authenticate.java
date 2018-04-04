@@ -10,9 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+//import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
+//import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+//@SessionAttributes(value = "userForm")
 public class Authenticate {
 
     @Value("${message.errorAuthenticate}")
@@ -20,7 +23,6 @@ public class Authenticate {
 
     @Value("${url.authenticate}")
     private String URL_AUTHENTICATE;
-
 
     @RequestMapping(value = {"/", "/authenticate"}, method = RequestMethod.GET)
     public String authentication(Model model) {
@@ -33,6 +35,7 @@ public class Authenticate {
 
     @RequestMapping(value = {"/", "/authenticate"}, method = RequestMethod.POST)
     public String authentication(Model model, @ModelAttribute("userForm") Users userForm) {
+        //ModelAndView modelAndView = new ModelAndView();
 
         String login = userForm.getLogin();
         String password = userForm.getPassword();
@@ -54,7 +57,11 @@ public class Authenticate {
             if (result.getStatusCode() == HttpStatus.OK) {
                 userToAuthenticate = result.getBody();
                 if (userToAuthenticate != null) {
+                    /*modelAndView.addObject("user", userForm);
+                    modelAndView.addObject("userLogin", login);*/
+
                     model.addAttribute("errorMessage", "");
+
                     return "redirect:/welcome";
                 }
             }

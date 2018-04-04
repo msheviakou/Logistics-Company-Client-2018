@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+//import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 public class Logout {
@@ -13,7 +14,9 @@ public class Logout {
     private String messageLogout;
 
     @RequestMapping(value = {"/logout"}, method = RequestMethod.POST)
-    public String logout(Model model){
+    public String logout(Model model /*SessionStatus sessionStatus*/){
+        //sessionStatus.setComplete();
+
         model.addAttribute("logoutMessage", messageLogout);
 
         return "redirect:/authenticate";
