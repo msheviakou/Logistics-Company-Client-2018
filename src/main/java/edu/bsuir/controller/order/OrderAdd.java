@@ -23,13 +23,13 @@ public class OrderAdd {
     @Value("${url.order}")
     private String URL_ORDER;
 
-    @RequestMapping(value = {"/addOrder"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"addOrder"}, method = RequestMethod.GET)
     public String showAddOrderPage(Model model) {
 
         Orders orderForm = new Orders();
         model.addAttribute("orderForm", orderForm);
 
-        return "addOrder";
+        return "/order/addOrder";
     }
 
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST)
