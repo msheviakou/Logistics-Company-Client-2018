@@ -13,7 +13,8 @@
 
     <h1>ЗАКАЗ</h1>
     Дата заказа:
-    <input type="date" th:field="*{dateOfOrder}" />
+    <label for="date-field">The Date</label>
+    <input id="date-field" type="date" th:field="*{dateOfOrder}" />
     <br/>
     Номер заказа:
     <input type="text" th:field="*{numberOfOrder}" />
