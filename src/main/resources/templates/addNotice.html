@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Добавление авизации</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Добавление авизации</h1>
+
+<form th:action="@{/addNotice}"
+      th:object="${noticeForm}" method="POST">
+
+    Дата загрузки:
+    <input type="date" th:field="*{dateOfLoading}" />
+    <br/>
+    Тип подвижного состава:
+    <input type="text" th:field="*{typeOfRollingStock}" />
+    <br/>
+    Место таможенного оформления:
+    <input type="text" th:field="*{placeOfCustomsClearance}" />
+    <br/>
+    Номер заказа:
+    <input type="text" th:field="*{orderOfLoading}" />
+    <br/>
+    Транспортный документ:
+    <input type="text" th:field="*{transportDocument}" />
+
+    Водитель:
+    <input type="text" th:field="*{driver.name}" />
+    Телефон водителя:
+    <input type="text" th:field="*{driver.phoneNumber}" />
+    <!--Ещё одно поле водителя?-->
+
+    <!--Forwarder???-->
+
+    <input type="submit" value="Добавить" />
+</form>
+
+</body>
+</html>
