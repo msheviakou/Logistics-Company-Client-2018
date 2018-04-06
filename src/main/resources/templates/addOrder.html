@@ -12,16 +12,6 @@
       th:object="${orderForm}" method="POST">
 
     <h1>ЗАКАЗ</h1>
-    Дата заказа:
-    <input type="date" th:field="*{dateOfOrder}" />
-    <br/>
-    Номер заказа:
-    <label for="number-of-order-field"></label>
-    <input id="number-of-order-field" type="text" th:field="*{numberOfOrder}" />
-    <br/>
-    Статус:
-    <input type="text" th:field="*{orderStatus}" />
-    <br/>
     Сумма:
     <input type="text" th:field="*{freightCost}" />
     <br/>
@@ -42,10 +32,15 @@
     <input type="text" th:field="*{carrier.carrierTelephone}" />
     <br/>
     Электронная почта:
-    <input type="text" th:field="*{carrier.carrierElMail}" />
+    <input type="email" th:field="*{carrier.carrierElMail}" />
     <br/>
-    Водитель:
-    <!--<input type="text" th:field="*{}" />--> ???
+
+    Регистрационный номер:
+    <input type="text" th:field="*{carrier.getDriver().trukRegNumber}" />
+    <br/>
+    Телефон водителя:
+    <input type="text" th:field="*{carrier.getDriver().phoneNumber}" />
+    <br/>
 
     <h1>ГРУЗ</h1>
     Описание товара:
@@ -58,7 +53,7 @@
     <input type="text" th:field="*{cargo.cargoCount}" />
     <br/>
     Документ:
-    <input type="text" th:field="*{cargo.cargoDocument}" />
+    <input type="file" th:field="*{cargo.cargoDocument}" />
     <br/>
 
     <h1>АДРЕС ЗАГРУЗКИ</h1>
@@ -78,6 +73,7 @@
     <br/>
     Дата загрузки:
     <input type="date" th:field="*{loading.loadingDate}" />
+    <br/>
     Время загрузки:
     <input type="time" th:field="*{loading.loadingTime}" />
     <br/>
@@ -97,17 +93,26 @@
     Время выгрузки:
     <input type="time" th:field="*{unloading.unloadingTime}" />
     <br/>
-    Склад:
-    <!--<input type="text" th:field="*{}" />--> ???
+
+    Название склада:
+    <input type="text" th:field="*{unloading.getStock().stockName}" />
+    <br/>
+    Адрес склада:
+    <input type="text" th:field="*{unloading.getStock().stockAdress}" />
+    <br/>
+    Страна:
+    <input type="text" th:field="*{unloading.getStock().stockCountry}" />
+    <br/>
+    Город:
+    <input type="text" th:field="*{unloading.getStock().stockCity}" />
+    <br/>
+    Почтовый индекс:
+    <input type="text" th:field="*{unloading.getStock().stockPostalCode}" />
+    <br/>
 
     <h1>ЭКСПЕДИТОР BY</h1>
     ФИО Экспедитора BY:
     <input type="text" th:field="*{userForwarderBY.name}" />
-    <br/>
-
-    <h1>ЭКСПЕДИТОР PL</h1>
-    ФИО Экспедитора PL:
-    <input type="text" th:field="*{userForwarderPL.name}" />
     <br/>
 
     <input type="submit" value="Добавить" />

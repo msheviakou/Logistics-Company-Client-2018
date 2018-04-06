@@ -99,7 +99,7 @@ public class OrderAdd {
         /* End Adding UserForwarderBY */
 
         /* Start Adding UserForwarderPL */
-        String userForwarderPLname = orderForm.getUserForwarderPL().getName();
+        String userForwarderPLname = "???";/* Тот пользователь, который оформляет заказ*/
 
         Users userForwarderPLtoAdd = setUserForwarderPLToAdd(userForwarderPLname);
         /* End Adding UserForwarderPL */
