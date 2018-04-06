@@ -42,9 +42,7 @@ public class Notices {
         return placeOfCustomsClearance;
     }
 
-    public void setPlaceOfCustomsClearance(String placeOfCustomsClearance) {
-        this.placeOfCustomsClearance = placeOfCustomsClearance;
-    }
+    public void setPlaceOfCustomsClearance(String placeOfCustomsClearance) { this.placeOfCustomsClearance = placeOfCustomsClearance; }
 
     public String getOrderOfLoading() {
         return orderOfLoading;

@@ -31,17 +31,6 @@ public class Orders {
         this.additionalInformation = additionalInformation;
     }
 
-    public Orders(int id, Date dateOfOrder, String numberOfOrder, String orderStatus,
-                 Double freightCost, String paymentPeriod, String additionalInformation) {
-        this.id = id;
-        this.dateOfOrder = dateOfOrder;
-        this.numberOfOrder = numberOfOrder;
-        this.orderStatus = orderStatus;
-        this.freightCost = freightCost;
-        this.paymentPeriod = paymentPeriod;
-        this.additionalInformation = additionalInformation;
-    }
-
     public int getId() {
         return id;
     }
