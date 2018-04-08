@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Добавление пользователя</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+    <body>
+    <h1>Добавление пользователя</h1>
+
+    <form th:action="@{/addUser}"
+          th:object="${userForm}" method="POST">
+        Имя:
+        <input type="text" th:field="*{name}" />
+        <br/>
+        Должность:
+        <input type="text" th:field="*{post}" /> <!-- Нужен выпадающий список -->
+        <br/>
+        Логин:
+        <input type="text" th:field="*{login}" />
+        <br/>
+        Пароль:
+        <input type="text" th:field="*{password}" />
+        <br/>
+        Подтверждение пароля:
+        <input type="text" id="confirmPassword" name="confirmPassword" />
+        <br/>
+        <input type="submit" value="Добавить" />
+    </form>
+
+    <form th:action="@{/logout}" method="POST">
+        <input type="submit" value="Назад"/>
+    </form>
+
+    <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;"></div>
+    </body>
+</html>

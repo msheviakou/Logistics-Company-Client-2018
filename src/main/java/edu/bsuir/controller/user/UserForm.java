@@ -5,34 +5,26 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
-public class UserDelete {
-
-    @Value("${message.error}")
-    private String messageError;
+public class UserForm {
 
     @Value("${url.user}")
     private String URL_USER;
 
-    @RequestMapping(value = {"/deleteUser"}, method = RequestMethod.POST)
-    public String deleteUser(Model model, @ModelAttribute("user") Users user) {
+    @RequestMapping(value = {"/userForm/{userId}"}, method = RequestMethod.GET)
+    public String getUser(Model model, @PathVariable("userId") String userId) {
 
-        int number = user.getId();
+        RestTemplate restTemplate = new RestTemplate();
 
-        if (number != 0) {
+        Users userToGet = restTemplate.getForObject(URL_USER + "/" + userId, Users.class);
 
-            RestTemplate restTemplate = new RestTemplate();
+        model.addAttribute("userForm", userToGet);
 
-            restTemplate.delete(URL_USER + "/" + number);
-
-            return "redirect:/administration";
-        }
-
-        model.addAttribute("errorMessage", messageError);
         return "userForm";
     }
 }

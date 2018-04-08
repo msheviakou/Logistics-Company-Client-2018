@@ -2,14 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Welcome</title>
+    <title>Добро пожаловать</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 
 <body>
-    <h1>Welcome!</h1>
-    <a href="addOrder">Добавить заказ</a>
-    <a href="addNotice">Добавить авизацию</a>
+    <div th:utext="${userForm.getPost()}"></div>
+
+    <div th:switch="${userForm.getPost()}">
+        <p th:case="'Админ'">
+            <a href="administration">Администрирование</a>
+        </p>
+
+        <p th:case="'Экспедитор'">
+            <a href="addOrder">Добавить заказ</a>
+            <a href="addNotice">Добавить авизацию</a>
+        </p>
+
+        <p th:case="'Заведующий складом'">
+            <a href="addStock">Добавить склад</a>
+        </p>
+    </div>
 
     <form th:action="@{/logout}" method="POST">
         <input type="submit" value="Logout"/>
