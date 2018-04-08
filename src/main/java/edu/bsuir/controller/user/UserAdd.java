@@ -33,31 +33,23 @@ public class UserAdd {
     @RequestMapping(value = {"/addUser"}, method = RequestMethod.POST)
     public String savePerson(Model model, @ModelAttribute("userForm") Users userForm) {
 
-        int number = userForm.getId();
         String firstName = userForm.getName();
         String position = userForm.getPost();
         String login = userForm.getLogin();
         String password = userForm.getPassword();
 
-        if (number != 0
-                && firstName != null && firstName.length() > 0
-                && position != null && position.length() > 0
-                && login != null && login.length() > 0
-                && password != null && password.length() > 0) {
+        Users userToAdd = new Users(firstName, position, login, password);
 
-            Users userToAdd = new Users(number, firstName, position, login, password);
+        RestTemplate restTemplate = new RestTemplate();
 
-            RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<Users> requestBody = new HttpEntity<>(userToAdd);
 
-            HttpEntity<Users> requestBody = new HttpEntity<>(userToAdd);
+        ResponseEntity<Users> result = restTemplate.postForEntity(URL_USER, requestBody, Users.class);
 
-            ResponseEntity<Users> result = restTemplate.postForEntity(URL_USER, requestBody, Users.class);
-
-            if (result.getStatusCode() == HttpStatus.OK) {
-                userToAdd = result.getBody();
-                if (userToAdd != null)
-                    return "redirect:/usersList";
-            }
+        if (result.getStatusCode() == HttpStatus.OK) {
+            userToAdd = result.getBody();
+            if (userToAdd != null)
+                return "redirect:/administration";
         }
 
         model.addAttribute("errorMessage", messageError);

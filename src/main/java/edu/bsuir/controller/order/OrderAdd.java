@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.client.RestTemplate;
 
 import java.sql.Time;
@@ -25,17 +26,17 @@ public class OrderAdd {
     @Value("${url.order}")
     private String URL_ORDER;
 
-    @RequestMapping(value = {"addOrder"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/addOrder"}, method = RequestMethod.GET)
     public String showAddOrderPage(Model model) {
 
         Orders orderForm = new Orders();
         model.addAttribute("orderForm", orderForm);
 
-        return "/order/addOrder";
+        return "addOrder";
     }
 
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST)
-    public String saveOrder(Model model, @ModelAttribute("orderForm") Orders orderForm) {
+    public String saveOrder(Model model, @ModelAttribute("orderForm") Orders orderForm, @SessionAttribute("userForm") Users userForm) {
 
         /* Start Setting Order */
         java.util.Date currentDateTime = new java.util.Date();
@@ -60,6 +61,16 @@ public class OrderAdd {
 
         Carriers carrierToAdd = setCarrierToAdd(carrierCompanyName, carrierContact, carrierTelephone, carrierElMail);
         /* End Adding Carrier */
+
+        /* Start Adding Driver */
+        String phoneNumber = orderForm.getCarrier().getDriver().getPhoneNumber();
+        String name = orderForm.getCarrier().getDriver().getName();
+        String trukRegNumber = orderForm.getCarrier().getDriver().getTrukRegNumber();
+
+        Drivers driverToAdd = setDriverToAdd(phoneNumber, name, trukRegNumber);
+
+        carrierToAdd.setDriver(driverToAdd);
+        /* End Adding Driver */
 
         /* Start Adding Cargo */
         String cargoDescription = orderForm.getCargo().getCargoDescription();
@@ -92,6 +103,18 @@ public class OrderAdd {
         Unloadings unloadingToAdd = setUnloadingToAdd(unloadingClient, unloadingCity, unloadingCountry, unloadingDate, unloadingTime);
         /* End Adding Unloading */
 
+        /* Start Adding Stock */
+        String stockName = orderForm.getUnloading().getStock().getStockName();
+        String stockAdress = orderForm.getUnloading().getStock().getStockAdress();
+        String stockPostalCode = orderForm.getUnloading().getStock().getStockPostalCode();
+        String stockCity = orderForm.getUnloading().getStock().getStockCity();
+        String stockCountry = orderForm.getUnloading().getStock().getStockCountry();
+
+        Stocks stockToAdd = setStockToAdd(stockName, stockAdress, stockPostalCode, stockCity, stockCountry);
+
+        unloadingToAdd.setStock(stockToAdd);
+        /* End Adding Stock */
+
         /* Start Adding UserForwarderBY */
         String userForwarderBYname = orderForm.getUserForwarderBY().getName();
 
@@ -99,7 +122,7 @@ public class OrderAdd {
         /* End Adding UserForwarderBY */
 
         /* Start Adding UserForwarderPL */
-        String userForwarderPLname = "???";/* Тот пользователь, который оформляет заказ*/
+        String userForwarderPLname = userForm.getName();
 
         Users userForwarderPLtoAdd = setUserForwarderPLToAdd(userForwarderPLname);
         /* End Adding UserForwarderPL */
@@ -187,5 +210,27 @@ public class OrderAdd {
         Users userForwarderPL = new Users(userForwarderPLname);
 
         return userForwarderPL;
+    }
+
+    private Drivers setDriverToAdd(String phoneNumber, String name, String trukRegNumber) {
+        Drivers driver = new Drivers();
+
+        driver.setPhoneNumber(phoneNumber);
+        driver.setName(name);
+        driver.setTrukRegNumber(trukRegNumber);
+
+        return driver;
+    }
+
+    private Stocks setStockToAdd(String stockName, String stockAdress, String stockPostalCode, String stockCity, String stockCountry) {
+        Stocks stock = new Stocks();
+
+        stock.setStockName(stockName);
+        stock.setStockAdress(stockAdress);
+        stock.setStockPostalCode(stockPostalCode);
+        stock.setStockCity(stockCity);
+        stock.setStockCountry(stockCountry);
+
+        return stock;
     }
 }

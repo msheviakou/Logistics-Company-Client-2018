@@ -10,12 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
-//import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
-//@SessionAttributes(value = "userForm")
+@SessionAttributes(value = "userForm")
 public class Authenticate {
 
     @Value("${message.errorAuthenticate}")
@@ -35,7 +37,6 @@ public class Authenticate {
 
     @RequestMapping(value = {"/", "/authenticate"}, method = RequestMethod.POST)
     public String authentication(Model model, @ModelAttribute("userForm") Users userForm) {
-        //ModelAndView modelAndView = new ModelAndView();
 
         String login = userForm.getLogin();
         String password = userForm.getPassword();
@@ -57,8 +58,9 @@ public class Authenticate {
             if (result.getStatusCode() == HttpStatus.OK) {
                 userToAuthenticate = result.getBody();
                 if (userToAuthenticate != null) {
-                    /*modelAndView.addObject("user", userForm);
-                    modelAndView.addObject("userLogin", login);*/
+                    userForm.setId(userToAuthenticate.getId());
+                    userForm.setName(userToAuthenticate.getName());
+                    userForm.setPost(userToAuthenticate.getPost());
 
                     model.addAttribute("errorMessage", "");
 

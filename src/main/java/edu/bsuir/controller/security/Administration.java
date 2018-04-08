@@ -1,4 +1,4 @@
-package edu.bsuir.controller.user;
+package edu.bsuir.controller.security;
 
 import edu.bsuir.model.Users;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
-public class UserList {
+public class Administration {
 
     @Value("${url.users}")
     private String URL_USERS;
 
-    @RequestMapping(value = {"/usersList"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/administration"}, method = RequestMethod.GET)
     public String usersList(Model model) {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        Users[] list = restTemplate.getForObject(URL_USERS, Users[].class);
+        Users[] users = restTemplate.getForObject(URL_USERS, Users[].class);
 
-        model.addAttribute("users", list);
+        model.addAttribute("users", users);
 
-        return "usersList";
+        return "administration";
     }
 }
