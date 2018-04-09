@@ -9,6 +9,14 @@ public class Users {
 
     public Users() {}
 
+    public Users(int id, String name, String post, String login, String password) {
+        this.id = id;
+        this.post = post;
+        this.login = login;
+        this.password = password;
+        this.name = name;
+    }
+
     public Users(String name, String post, String login, String password) {
         this.post = post;
         this.login = login;

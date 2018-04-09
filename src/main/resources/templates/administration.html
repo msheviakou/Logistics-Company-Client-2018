@@ -9,7 +9,7 @@
     <h1>Список пользователей</h1>
 
     <div>
-        <table >
+        <table>
             <tr>
                 <th>Имя</th>
                 <th>Должность</th>
@@ -17,7 +17,7 @@
             <tr th:each ="user : ${users}">
                 <td th:utext="${user.name}"></td>
                 <td th:utext="${user.post}"></td>
-                <td><a th:href="${'/userForm/' + user.id}">More</a></td>
+                <td><a th:href="${'/userForm/' + user.id}">Узнать больше</a></td>
             </tr>
         </table>
     </div>
