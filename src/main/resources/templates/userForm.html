@@ -11,9 +11,7 @@
     <form th:action="@{/addUser}"
           th:object="${userForm}" method="POST">
         <table border="1">
-            <tr>
-                <th><input type="hidden" th:field="${userForm.id}" /></th>
-            </tr>
+            <th><input type="hidden" th:field="${userForm.id}" /></th>
             <tr>
                 <th>Имя:</th>
                 <th><input type="text" th:field="${userForm.name}" /></th>
@@ -31,18 +29,16 @@
                 <th><input type="text" th:field="${userForm.password}" /></th>
             </tr>
             <tr>
-                <td><input type="submit" value="Сохранить"></td>
+                <input type="submit" value="Сохранить">
             </tr>
         </table>
     </form>
 
-    <form th:action="@{/deleteUser}"
-          th:object="${userForm}" method="POST">
-        <input type="submit" value="Удалить"/>
-    </form>
+    <a th:href="${'/deleteUser/' + userForm.id}">Удалить</a>
 
     <form th:action="@{/logout}" method="POST">
         <input type="submit" value="Назад"/>
     </form>
+
 </body>
 </html>
