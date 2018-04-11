@@ -6,14 +6,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
-public class UserAdd {
+public class UserSave {
 
     @Value("${message.error}")
     private String messageError;
@@ -21,17 +20,8 @@ public class UserAdd {
     @Value("${url.user}")
     private String URL_USER;
 
-    @RequestMapping(value = {"/addUser"}, method = RequestMethod.GET)
-    public String showAddUserPage(Model model) {
-
-        Users userForm = new Users();
-        model.addAttribute("userForm", userForm);
-
-        return "addUser";
-    }
-
-    @RequestMapping(value = {"/addUser"}, method = RequestMethod.POST)
-    public String savePerson(Model model, @ModelAttribute("userForm") Users userForm) {
+    @RequestMapping(value = {"/saveUser"}, method = RequestMethod.POST)
+    public String saveUser(@ModelAttribute("userForm") Users userForm) {
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -39,13 +29,15 @@ public class UserAdd {
 
         ResponseEntity<Users> result = restTemplate.postForEntity(URL_USER, requestBody, Users.class);
 
-        if (result.getStatusCode() == HttpStatus.OK) {
-            userForm = result.getBody();
-            if (userForm != null)
-                return "redirect:/administration";
-        }
+        System.out.println(userForm.getName() + " успешно сохранён!");
 
-        model.addAttribute("errorMessage", messageError);
-        return "addUser";
+        /*if (result.getStatusCode() == HttpStatus.OK) {
+            userForm = result.getBody();
+            if (userForm != null){
+
+            }
+        }*/
+
+        return "userForm";
     }
 }
