@@ -121,19 +121,13 @@ public class OrderAdd {
         Users userForwarderBYtoAdd = setUserForwarderBYToAdd(userForwarderBYname);
         /* End Adding UserForwarderBY */
 
-        /* Start Adding UserForwarderPL */
-        String userForwarderPLname = userForm.getName();
-
-        Users userForwarderPLtoAdd = setUserForwarderPLToAdd(userForwarderPLname);
-        /* End Adding UserForwarderPL */
-
         /* Start Setting Objects*/
         orderToAdd.setCarrier(carrierToAdd);
         orderToAdd.setCargo(cargoToAdd);
         orderToAdd.setLoading(loadingToAdd);
         orderToAdd.setUnloading(unloadingToAdd);
         orderToAdd.setUserForwarderBY(userForwarderBYtoAdd);
-        orderToAdd.setUserForwarderPL(userForwarderPLtoAdd);
+        orderToAdd.setUserForwarderPL(userForm);
         /* End Setting Objects */
 
         RestTemplate restTemplate = new RestTemplate();
@@ -201,15 +195,10 @@ public class OrderAdd {
     }
 
     private Users setUserForwarderBYToAdd(String userForwarderBYname) {
-        Users userForwarderBY = new Users(userForwarderBYname);
+        Users userForwarderBY = new Users();
+        userForwarderBY.setName(userForwarderBYname);
 
         return userForwarderBY;
-    }
-
-    private Users setUserForwarderPLToAdd(String userForwarderPLname) {
-        Users userForwarderPL = new Users(userForwarderPLname);
-
-        return userForwarderPL;
     }
 
     private Drivers setDriverToAdd(String phoneNumber, String name, String trukRegNumber) {

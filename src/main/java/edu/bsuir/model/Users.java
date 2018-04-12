@@ -24,8 +24,6 @@ public class Users {
         this.name = name;
     }
 
-    public Users(String name) { this.name = name; }
-
     public int getId() {
         return id;
     }
