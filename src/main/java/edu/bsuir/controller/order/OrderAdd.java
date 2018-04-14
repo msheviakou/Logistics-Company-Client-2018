@@ -44,7 +44,7 @@ public class OrderAdd {
         Calendar calendar = Calendar.getInstance();
 
         Date dateOfOrder = new Date(currentDateTime.getTime());
-        String numberOfOrder = "P" + calendar.get(Calendar.MONTH) + "001";
+        String numberOfOrder = "P" + calendar.get(Calendar.MONTH) + "001"; // Нужно заменить последние 3 цифры
         String orderStatus = "В реализации";
         Double freightCost = orderForm.getFreightCost();
         String paymentPeriod = orderForm.getPaymentPeriod();
@@ -196,6 +196,7 @@ public class OrderAdd {
 
     private Users setUserForwarderBYToAdd(String userForwarderBYname) {
         Users userForwarderBY = new Users();
+
         userForwarderBY.setName(userForwarderBYname);
 
         return userForwarderBY;
