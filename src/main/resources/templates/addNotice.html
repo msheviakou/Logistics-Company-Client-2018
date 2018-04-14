@@ -11,6 +11,9 @@
 <form th:action="@{/addNotice}"
       th:object="${noticeForm}" method="POST">
 
+    Номер заказа:
+    <input type="text" th:field="*{orderOfLoading}" />
+    <br/>
     Дата загрузки:
     <input type="date" th:field="*{dateOfLoading}" />
     <br/>
@@ -20,19 +23,22 @@
     Место таможенного оформления:
     <input type="text" th:field="*{placeOfCustomsClearance}" />
     <br/>
-    Номер заказа:
-    <input type="text" th:field="*{orderOfLoading}" />
-    <br/>
     Транспортный документ:
     <input type="text" th:field="*{transportDocument}" />
 
     Водитель:
     <input type="text" th:field="*{driver.name}" />
+    <br/>
+    Регистрационный номер:
+    <input type="text" th:field="*{driver.trukRegNumber}" />
+    <br/>
     Телефон водителя:
     <input type="text" th:field="*{driver.phoneNumber}" />
-    <!--Ещё одно поле водителя?-->
+    <br/>
 
-    <!--Forwarder???-->
+    Перевозчик:
+    <input type="text" th:field="*{forwarder.name}" />
+    <br/>
 
     <input type="submit" value="Добавить" />
 </form>

@@ -14,6 +14,17 @@ public class Notices {
     private Drivers driver;
     private Users forwarder;
 
+    public Notices(){}
+
+    public Notices(String typeOfRollingStock, Date dateOfLoading,  String placeOfCustomsClearance, String orderOfLoading, String transportDocument, String status) {
+        this.dateOfLoading = dateOfLoading;
+        this.typeOfRollingStock = typeOfRollingStock;
+        this.placeOfCustomsClearance = placeOfCustomsClearance;
+        this.orderOfLoading = orderOfLoading;
+        this.transportDocument = transportDocument;
+        this.status = status;
+    }
+
     public int getId() {
         return id;
     }

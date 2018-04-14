@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 
+import java.sql.Date;
+
 @Controller
 public class NoticeAdd {
 
@@ -33,7 +35,24 @@ public class NoticeAdd {
     @RequestMapping(value = {"/addNotice"}, method = RequestMethod.POST)
     public String saveNotice(Model model, @ModelAttribute("noticeForm") Notices noticeForm) {
 
-        Notices noticeToAdd = new Notices();
+        /* Start Setting Order */
+        String orderOfLoading = noticeForm.getOrderOfLoading();
+        Date dateOfLoading = noticeForm.getDateOfLoading();
+        String typeOfRollingStock = noticeForm.getTypeOfRollingStock();
+        String placeOfCustomsClearance = noticeForm.getPlaceOfCustomsClearance();
+        String transportDocument = noticeForm.getTransportDocument();
+        String status = "незнаюстатускогдаавизациядобавляетсяпокосзаебал";
+
+        Notices noticeToAdd = new Notices(orderOfLoading, dateOfLoading, typeOfRollingStock, placeOfCustomsClearance, transportDocument, status);
+        /* End Setting Order */
+
+        /* Start Setting Objects*/
+        noticeToAdd.setDriver(noticeForm.getDriver());
+        noticeToAdd.setForwarder(noticeForm.getForwarder());
+        /* End Setting Objects*/
+
+        /* Как я понял нужно ещё обновить заказ, то есть изменить у него статус и добавить id авизации */
+        /* И сделать проверку на существование этого заказа. Мы добавляем его номер, а если его нету. Можно список выпадающий */
 
         RestTemplate restTemplate = new RestTemplate();
 
