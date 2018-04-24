@@ -15,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.sql.Time;
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,7 +40,7 @@ public class OrderAdd {
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST)
     public String saveOrder(Model model, @ModelAttribute("orderForm") Orders orderForm, @SessionAttribute("userForm") Users userForm) {
 
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         Date loadingDate = null;
         Date unloadingDate = null;
@@ -100,13 +99,8 @@ public class OrderAdd {
 
         String loadDate = orderForm.getLoading().getLoadingDate().toString();
         String loadTime = (orderForm.getLoading().getLoadingTime()).toString();
-        try {
-            loadingDate = (Date) format.parse(loadDate);
-            loadingTime = (Time) format.parse(loadTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+        loadingDate = Date.valueOf(loadDate);
+        loadingTime = Time.valueOf(loadTime);
 
         Loadings loadingToAdd = setLoadingToAdd(loadingCompanyName, loadingAdress, loadingPostalCode, loadingCity, loadingCountry, loadingDate, loadingTime);
         /* End Adding Loading */
@@ -118,13 +112,8 @@ public class OrderAdd {
 
         String unloadDate = orderForm.getLoading().getLoadingDate().toString();
         String unloadTime = orderForm.getUnloading().getUnloadingTime().toString();
-        try {
-            unloadingDate = (Date) format.parse(unloadDate);
-            unloadingTime = (Time) format.parse(unloadTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+        unloadingDate = Date.valueOf(unloadDate);
+        unloadingTime = Time.valueOf(unloadTime);
 
         Unloadings unloadingToAdd = setUnloadingToAdd(unloadingClient, unloadingCity, unloadingCountry, unloadingDate, unloadingTime);
         /* End Adding Unloading */
