@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class Index {
-    @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
-    public String welcome(){
-        return "index";
-    }
 
-    @RequestMapping(value = {"/try"}, method = RequestMethod.GET)
-    public String trry(){
-        return "try";
+    @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
+    public String index(Model model, @SessionAttribute ("userForm") Users userForm){
+        model.addAttribute("userForm", userForm);
+
+        return "index";
     }
 }

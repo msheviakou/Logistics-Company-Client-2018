@@ -12,6 +12,7 @@
   box-shadow: 0px 9px 0px 0px #258cd1;
   transition: all 0.2s;
   border: none;
+  cursor: pointer;
 }
 
 .jump_btn:active {

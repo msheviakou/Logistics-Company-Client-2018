@@ -83,7 +83,7 @@
               <label><span class="label_text">Выберите склад</span>
               <!-- ATTENTION!!!!-->
               <select>
-                <option value="newStock"></option>
+                <option value="Склад 1">Склад 1</option>
                 <!--ТУТ ВЫВЕСТИ все склады-->
               </select>
               </label>
@@ -120,6 +120,9 @@
       <div class="additional_inf">
         <label class="additional_inf_description"><span class="label_text">Дополнительная информация</span>
           <textarea class="textarea_additional_inf" required th:field="*{additionalInformation}"></textarea>
+        </label>
+        <label>
+          ФИО Экспедитора BY: <input type="text" th:field="*{userForwarderBY.name}" />
         </label>
       </div>
       <div class="add_order_submit">

@@ -14,7 +14,7 @@ public class OrderList {
     @Value("${url.orders}")
     private String URL_ORDERS;
 
-    @RequestMapping(value = {"/ordersList"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/ordersRealization"}, method = RequestMethod.GET)
     public String ordersList(Model model) {
 
         RestTemplate restTemplate = new RestTemplate();
@@ -23,6 +23,6 @@ public class OrderList {
 
         model.addAttribute("orders", list);
 
-        return "ordersList";
+        return "ordersRealization";
     }
 }
