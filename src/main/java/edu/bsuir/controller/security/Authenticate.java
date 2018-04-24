@@ -64,7 +64,7 @@ public class Authenticate {
 
                     model.addAttribute("errorMessage", "");
 
-                    return "redirect:/welcome";
+                    return "redirect:/index";
                 }
             }
         }

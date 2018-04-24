@@ -15,6 +15,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.sql.Time;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 @Controller
@@ -37,6 +40,13 @@ public class OrderAdd {
 
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST)
     public String saveOrder(Model model, @ModelAttribute("orderForm") Orders orderForm, @SessionAttribute("userForm") Users userForm) {
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date loadingDate = null;
+        Date unloadingDate = null;
+        Time loadingTime = null;
+        Time unloadingTime = null;
 
         /* Start Setting Order */
         java.util.Date currentDateTime = new java.util.Date();
@@ -87,8 +97,16 @@ public class OrderAdd {
         String loadingPostalCode = orderForm.getLoading().getLoadingPostalCode();
         String loadingCity = orderForm.getLoading().getLoadingCity();
         String loadingCountry = orderForm.getLoading().getLoadingCountry();
-        Date loadingDate = orderForm.getLoading().getLoadingDate();
-        Time loadingTime = orderForm.getLoading().getLoadingTime();
+
+        String loadDate = orderForm.getLoading().getLoadingDate().toString();
+        String loadTime = (orderForm.getLoading().getLoadingTime()).toString();
+        try {
+            loadingDate = (Date) format.parse(loadDate);
+            loadingTime = (Time) format.parse(loadTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
 
         Loadings loadingToAdd = setLoadingToAdd(loadingCompanyName, loadingAdress, loadingPostalCode, loadingCity, loadingCountry, loadingDate, loadingTime);
         /* End Adding Loading */
@@ -97,8 +115,16 @@ public class OrderAdd {
         String unloadingClient = orderForm.getUnloading().getUnloadingClient();
         String unloadingCity = orderForm.getUnloading().getUnloadingCity();
         String unloadingCountry = orderForm.getUnloading().getUnloadingCountry();
-        Date unloadingDate = orderForm.getUnloading().getUnloadingDate();
-        Time unloadingTime = orderForm.getUnloading().getUnloadingTime();
+
+        String unloadDate = orderForm.getLoading().getLoadingDate().toString();
+        String unloadTime = orderForm.getUnloading().getUnloadingTime().toString();
+        try {
+            unloadingDate = (Date) format.parse(unloadDate);
+            unloadingTime = (Time) format.parse(unloadTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
 
         Unloadings unloadingToAdd = setUnloadingToAdd(unloadingClient, unloadingCity, unloadingCountry, unloadingDate, unloadingTime);
         /* End Adding Unloading */
@@ -143,7 +169,7 @@ public class OrderAdd {
         }
 
         model.addAttribute("errorMessage", messageError);
-        return "addOrder";
+        return "addOrderP";
     }
 
     private Carriers setCarrierToAdd(String carrierCompanyName, String carrierContact, String carrierTelephone, String carrierElMail) {
