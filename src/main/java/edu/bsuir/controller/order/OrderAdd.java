@@ -143,7 +143,7 @@ public class OrderAdd {
         }
 
         model.addAttribute("errorMessage", messageError);
-        return "addOrder";
+        return "addOrderP";
     }
 
     private Carriers setCarrierToAdd(String carrierCompanyName, String carrierContact, String carrierTelephone, String carrierElMail) {

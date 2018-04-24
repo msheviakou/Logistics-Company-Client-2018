@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<head>
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+  <link th:href="@{http://fonts.googleapis.com/css?family=Cookie}"  rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" th:href="@{//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}">
+  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
+  <script th:src="@{https://code.jquery.com/ui/1.12.1/jquery-ui.js}"></script>
+  <script th:src="@{/libs/wickedpicker/src/wickedpicker.js}"></script>
+</head>
+<body>
+<header class="header">
+  <div class="header_limiter">
+    <h1><a href="#">Company<span>logo</span></a></h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#" class="selected">Blog</a>
+      <a href="#">Pricing</a>
+    </nav>
+    <ul>
+      <!-- Вместо UserLogin подтягивается текущий зареганный пользователь-->
+      <li><a href="#">UserLogin</a></li>
+      <li><a href="#">Sign out</a></li>
+    </ul>
+  </div>
+
+</header>
+<main class="main">
+  <secion class="menu_bar">
+    <div class="site_menu_small">
+      <a href="#" class="menu_item_small statistics_item"><img th:src="@{/img/index/statistics.png}" alt="Statistics"></a>
+      <a href="#" class="menu_item_small trucks_item"><img th:src="@{/img/index/truck.png}" alt="Truck"></a>
+      <a href="#" class="menu_item_small users_item"><img th:src="@{/img/index/users.png}" alt="Users"></a>
+      <a href="#" class="menu_item_small settings_item"><img th:src="@{/img/index/settings.png}" alt="Settings"></a>
+    </div>
+    <nav class="site_menu">
+      <ul class="site_menu__list">
+        <li class="site_menu_item"><a class="site_menu_item__link site_menu_item__link--active" href='#'><span>Добавить заказ</span></a></li>
+        <li class="site_menu_item active"><a class="site_menu_item__link" href='#'><span>Добавить авизацию</span></a></li>
+        <li class="site_menu_item"><a class="site_menu_item__link" href='#'><span>Заказы на загрузку</span></a></li>
+        <li class="site_menu_item last"><a class="site_menu_item__link" href='#'><span>Заказы в реализации</span></a></li>
+        <li class="site_menu_item last"><a class="site_menu_item__link" href='#'><span>Архив заказов</span></a></li>
+        <li class="site_menu_item last"><a class="site_menu_item__link" href='#'><span>Архив RUS</span></a></li>
+        <li class="site_menu_item last"><a class="site_menu_item__link" href='#'><span>Клиенты</span></a></li>
+      </ul>
+    </nav>
+  </secion>
+  <section class="dynamical_section">
+    <div class="breadcrumbs">
+      <ul class="breadcrumb_list">
+        <li class="breadcrumb_list_item"><a href="#"><span class="breadcrumb_icon icon-home fas fa-home"></span></a></li>
+        <li class="breadcrumb_list_item"><a href="#" class="current_place_on_site"><span class="breadcrumb_icon icon-arrow-down"> </span> </a></li>
+      </ul>
+    </div>
+    <div class="content_field">
+      <div class="navigation_panel">
+        <span class="navigation_panel__text"></span>
+      </div>
+      <div class="content"></div>
+    </div>
+  </section>
+
+</main>
+
+<script th:src="@{/js/index.js}"></script>
+</body>
+</html>

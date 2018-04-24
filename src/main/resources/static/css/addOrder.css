@@ -1,0 +1,111 @@
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #fff;
+}
+.carrier_text,
+.cargo_text,
+.loading_text,
+.unloading_text {
+  width: 100%;
+  color: #333;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 15px;
+  padding: 15px 0 0;
+  font-size: 17px;
+  line-height: 27px;
+}
+
+.label_text {
+  font-size: 14px;
+  width: 130px;
+  text-align: right;
+  margin-right: 5px;
+  padding-top: 5px;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.time {
+  width: 15%;
+  margin-left: 20px;
+  text-align: center;
+  margin-left: -15%;
+  font-size: 90%;
+  height: 24px;
+}
+
+.date {
+  width: 30%;
+  text-align: center;
+}
+
+.carrier_info,
+.unloading_info,
+.dates,
+.loading_date_and_time,
+.unloading_date_and_time
+{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.about_carrier_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cargo_info,
+.unloading_stock_info,
+unloading_client_info {
+  display: flex;
+  flex-direction: column;
+}
+
+.loading_date_and_time label,
+.unloading_date_and_time label
+{
+  justify-content: flex-start;
+}
+
+.unloading_date_and_time {
+  margin-left: -9%;
+}
+
+
+.dates {
+  margin-top: 20px;
+}
+
+.about_cargo_row {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.textarea_cargo {
+  width: 700px;
+  height: 100px;
+}
+
+.cargo_description {
+  justify-content: flex-start;
+}
+
+.about_cargo_row input {
+  max-width: 100px;
+}
+
+.addresses {
+  display: flex;
+  flex-direction: row;
+}
+
+.unloading {
+  margin-left: 60px;
+}

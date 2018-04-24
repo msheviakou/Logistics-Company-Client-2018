@@ -1,0 +1,21 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <main class="content">
+    <h2><span>DLS Logistics</span></h2>
+		<form th:action="@{/}" th:object="${userForm}" method="post">
+			<input placeholder="Login" th:field="*{login}" name="Name" type="text" required="">
+			<!-- <input placeholder="Email Address" name="Email" type="email" required=""> -->
+			<input placeholder="Password" th:field="*{password}" name="Password" type="password" required="">
+			<input type="submit" value="Enter" name="log">
+		</form>
+  </main>
+  <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;"></div>
+</body>
+<link rel="stylesheet" th:href="@{/css/authorization.css}">
+</html>

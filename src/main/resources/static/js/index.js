@@ -1,28 +1,31 @@
-const sentReq = () => {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET','administration' , true);
-    xhr.send();
+;(() => {
+  $( document ).ready(function() {
+    showViewPage('addOrder');
+    changeBreadCrumbText('Добавить заказ');
+    changeNavigationText('Заказ на загрузку');
+  });
 
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState != 4) return;
+  const showViewPage = (name) => {
+    $.ajax({
+      url: name,
+      cache: false,
+      success: function(html) {
+        let $doc = $('<div></div>').html(html);
+        let $el = $doc.find(`.${name}_container`);
+        console.log($el);
+        $('.content').append($el);
+      },
+    });
+  };
+
+  const changeNavigationText = (text) => {
+    $('.navigation_panel__text').text(text);
+  };
+
+  const changeBreadCrumbText = (text) => {
+    $('.current_place_on_site').text(text);
+  };
+
+})();
 
 
-        if (xhr.status != 200) {
-            // обработать ошибку
-            alert(xhr.status + ': ' + xhr.statusText);
-        } else {
-            // вывести результат
-            console.log(xhr.responseText);
-            // let psrser = new DOMParser();
-            // tryDOC = parser.parseFromString(xhr.responseText, "text/xml"v
-            let x = document.createElement('div');
-            x.innerHTML = xhr.responseText;
-            document.body.appendChild(x.querySelector('.administration_content'));
-
-        }
-
-    }
-
-}
-
-sentReq();

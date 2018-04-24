@@ -1,0 +1,155 @@
+@import "./import.css";
+
+body {
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: flex-start;
+  min-width: 100vw;
+  color:#eee;
+}
+
+body:after {
+  content:"";
+  width:100%;
+  height: 60%;
+  position:absolute;
+  bottom:0;
+  left:0;
+  z-index:-1;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(27,32,48,1) 100%);
+}
+
+body:before {
+  content:"";
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1.0, 1.0);
+  transform: translateZ(0);
+  background:#1B2030 url("../img/authorization/authorization-bg.jpg") top center no-repeat;
+  background-size:cover;
+  background-attachment:fixed;
+  animation: grow 100s  linear 10ms infinite;
+  transition:all 0.2s ease-in-out;
+  z-index:-2
+}
+
+@keyframes grow{
+  0% { transform:scale(1)}
+  50% { transform:scale(1.15)}
+}
+
+/* h1.logo-w3  {
+  font-size: 3em;
+  text-transform: uppercase;
+  word-spacing: 15px;
+  color: #ffffff;
+text-align:center;
+margin: 5% 0;
+width: 100%;
+} */
+
+
+.content h2 {
+	color: #fff;
+  font-size: 28px;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+	text-align: center;
+  margin-bottom: 30px;
+}
+
+.content h2 span {
+    padding: 0 0em;
+}
+
+.content {
+    width: 40%;
+    background:rgba(0, 0, 0, 0.7);
+	  text-align: center;
+}
+
+.content {
+	padding: 48px 35px;
+}
+
+/*  *************************FORM****************************** */
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 74%;
+  padding: 15px 50px 15px 45px;
+  outline: none;
+  font-size: 15px;
+  font-weight: 300;
+  color: #fff;
+  margin: 14px 0px;
+  font-family: 'Varela Round', sans-serif;
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  letter-spacing: .5px;
+}
+input[type="text"] {
+  background:  rgba(0, 0, 0, 0.55) url('../img/authorization/user.png') no-repeat 10px 10px;
+  background-size: 26px;
+}
+input[type="email"] {
+  background:  rgba(0, 0, 0, 0.55) url('../img/authorization/email.png') no-repeat 10px 10px;
+  background-size: 23px;
+}
+input[type="password"] {
+  background:  rgba(0, 0, 0, 0.55) url('../img/authorization/lock.png') no-repeat 10px 10px;
+  background-size: 23px;
+}
+
+input[type="submit"] {
+  padding: 14px 30px;
+  width: 40%;
+  font-size: 1em;
+  font-family: 'Varela Round', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: #898275;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin: 24px auto;
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+}
+input[type="submit"]:hover {
+  background: #ab9d82;
+  color: #ffffff;
+  transition:0.5s all;
+  -webkit-transition:0.5s all;
+  -o-transition:0.5s all;
+  -moz-transition:0.5s all;
+  -ms-transition:0.5s all;
+}
+
+::-webkit-input-placeholder{
+color:rgba(255, 255, 255, 0.65);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+ color: rgba(255, 255, 255, 0.65); 
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+ color: rgba(255, 255, 255, 0.65);  
+}
+
+:-ms-input-placeholder {  
+ color: rgba(255, 255, 255, 0.65);  
+}
+/*  *********************************************************** */

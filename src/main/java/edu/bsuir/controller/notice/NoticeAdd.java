@@ -41,7 +41,7 @@ public class NoticeAdd {
         String typeOfRollingStock = noticeForm.getTypeOfRollingStock();
         String placeOfCustomsClearance = noticeForm.getPlaceOfCustomsClearance();
         String transportDocument = noticeForm.getTransportDocument();
-        String status = "незнаюстатускогдаавизациядобавляетсяпокосзаебал";
+        String status = "Не заполнена";
 
         Notices noticeToAdd = new Notices(orderOfLoading, dateOfLoading, typeOfRollingStock, placeOfCustomsClearance, transportDocument, status);
         /* End Setting Order */
