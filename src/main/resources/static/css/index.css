@@ -92,10 +92,13 @@
 
 .main {
   display: flex;
+  min-height: 100%;
+  height: 100%
 }
 
 .menu_bar {
   max-width: 15%;
+  height: inherit;
   min-height: 100%;
   background-color: #f2f2f2;
   border-right: 1px solid #ccc;

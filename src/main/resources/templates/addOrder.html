@@ -14,17 +14,17 @@
         <legend class="carrier_text">Перевозчик</legend>
         <div class="carrier_info">
           <div class="about_carrier_column">
-            <label><span class="label_text">Название компании</span><input type="text"></label>
-            <label><span class="label_text">Контактное лицо</span><input type="text"></label>
-            <label><span class="label_text">Телефон</span><input type="text"></label>
-            <label><span class="label_text">Электронная почта</span><input type="email"></label>
+            <label><span class="label_text">Название компании</span><input type="text" th:field="*{carrier.carrierCompanyName}"></label>
+            <label><span class="label_text">Контактное лицо</span><input type="text" th:field="*{carrier.carrierContact}"></label>
+            <label><span class="label_text">Телефон</span><input type="text" th:field="*{carrier.carrierTelephone}"></label>
+            <label><span class="label_text">Электронная почта</span><input type="email" th:field="*{carrier.carrierElMail}"></label>
           </div>
-          <div class="about_carrier_column">
-            <label><span class="label_text">Адресс</span><input type="text"></label>
-            <label><span class="label_text">Почтовый индекс</span><input type="text"></label>
-            <label><span class="label_text">Страна</span><input type="text"></label>
-            <label><span class="label_text">Город</span><input type="text"></label>
-          </div>
+          <!--<div class="about_carrier_column">-->
+            <!--<label><span class="label_text">Адресс</span><input type="text"></label>-->
+            <!--<label><span class="label_text">Почтовый индекс</span><input type="text"></label>-->
+            <!--<label><span class="label_text">Страна</span><input type="text"></label>-->
+            <!--<label><span class="label_text">Город</span><input type="text"></label>-->
+          <!--</div>-->
           <div class="about_carrier_column">
             <label><span class="label_text">Имя водителя</span><input type="text" th:field="*{carrier.driver.name}" /></label>
             <label><span class="label_text">Регистрационный номер</span><input type="text" th:field="*{carrier.driver.trukRegNumber}" /></label>
@@ -37,7 +37,7 @@
         <div class="cargo_info">
           <div class="about_cargo_row">
             <label class="cargo_description"><span class="label_text">Описание товара</span>
-              <textarea class="textarea_cargo" required></textarea>
+              <textarea class="textarea_cargo" th:field="*{cargo.cargoDescription}" required></textarea>
             </label>
           </div>
           <div class="about_cargo_row">
@@ -101,6 +101,31 @@
             </div>
           </div>
         </fieldset>
+      </div>
+      <fieldset class="payment">
+        <legend class="payment_text">Ставка/Фрахт</legend>
+          <div class="about_payment_row">
+            <label><span class="label_text">Сумма</span><input type="text" th:field="*{freightCost}" /></label>
+            <label><span class="label_text">Срок оплаты</span>
+              <select th:field="*{paymentPeriod}" >
+                <option value="7">7 дней</option>
+                <option value="14">14 дней</option>
+                <option value="21">21 день</option>
+                <option value="30">30 дней</option>
+                <option value="45">45 дней</option>
+              </select>
+            </label>
+          </div>
+      </fieldset>
+      <div class="additional_inf">
+        <label class="additional_inf_description"><span class="label_text">Дополнительная информация</span>
+          <textarea class="textarea_additional_inf" required th:field="*{additionalInformation}"></textarea>
+        </label>
+      </div>
+      <div class="add_order_submit">
+        <!--После сабмита перекинуть на страницу с казками в реализцаии *предварительно провалидировать
+        ( Если Ошибка - вывести её в  <div class="error_output"></div>-->
+        <input type="submit" class="add_order_submit_btn jump_btn" value="Добавить заказ"/>
       </div>
     </form>
     <!--<link rel="stylesheet" th:href="@{/static/css/addOrder.css}">-->

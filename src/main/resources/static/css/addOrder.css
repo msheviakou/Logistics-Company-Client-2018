@@ -7,7 +7,8 @@ hr {
 .carrier_text,
 .cargo_text,
 .loading_text,
-.unloading_text {
+.unloading_text,
+.payment_text{
   width: 100%;
   color: #333;
   border-bottom: 1px solid #e5e5e5;
@@ -83,17 +84,20 @@ unloading_client_info {
   margin-top: 20px;
 }
 
-.about_cargo_row {
+.about_cargo_row,
+.about_payment_row {
   display: flex;
   justify-content: flex-start;
 }
 
-.textarea_cargo {
+.textarea_cargo,
+.textarea_additional_inf{
   width: 700px;
   height: 100px;
 }
 
-.cargo_description {
+.cargo_description,
+.additional_inf_description{
   justify-content: flex-start;
 }
 
@@ -108,4 +112,11 @@ unloading_client_info {
 
 .unloading {
   margin-left: 60px;
+}
+
+.add_order_submit {
+  background-color: #f2f2f2;
+  height: 13%;
+  margin-top: 20px;
+  padding-left: 80px;
 }
