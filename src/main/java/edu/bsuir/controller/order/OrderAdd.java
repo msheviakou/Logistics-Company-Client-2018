@@ -152,7 +152,7 @@ public class OrderAdd {
         if (result.getStatusCode() == HttpStatus.OK) {
             orderToAdd = result.getBody();
             if (orderToAdd != null)
-                return "redirect:/welcome";
+                return "redirect:/index";
         }
 
         model.addAttribute("errorMessage", messageError);

@@ -10,6 +10,9 @@
   <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
   <script th:src="@{https://code.jquery.com/ui/1.12.1/jquery-ui.js}"></script>
   <script th:src="@{/libs/wickedpicker/src/wickedpicker.js}"></script>
+
+  <link rel="stylesheet" type="text/css" th:href="@{https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css}">
+  <script type="text/javascript" charset="utf8" th:src="@{https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js}"></script>
 </head>
 <body>
 <header class="header">
@@ -22,8 +25,8 @@
     </nav>
     <ul>
       <!-- Вместо UserLogin подтягивается текущий зареганный пользователь-->
-      <li><a href="#">UserLogin</a></li>
-      <li><a th:utext="${userForm.getPost()}" href="#"></a></li>
+      <li><a th:utext="${userForm.getPost()}" href="#">UserLogin</a></li>
+      <li><a href="#">SignOut</a></li>
     </ul>
   </div>
 

@@ -1,8 +1,8 @@
 ;(() => {
   $( document ).ready(function() {
-    showViewPage('addOrder');
-    changeBreadCrumbText('Добавить заказ');
-    changeNavigationText('Заказ на загрузку');
+    showViewPage('ordersRealization');
+    changeNavigationText('Транспортные заказы');
+    changeBreadCrumbText('Заказы в реализации');
   });
 
   const showViewPage = (name) => {
