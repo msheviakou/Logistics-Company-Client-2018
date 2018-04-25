@@ -16,8 +16,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 @Controller
 public class OrderAdd {
@@ -27,6 +28,9 @@ public class OrderAdd {
 
     @Value("${url.order}")
     private String URL_ORDER;
+
+    @Value("${url.order.last}")
+    private String URL_ORDER_LAST;
 
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.GET)
     public String showAddOrderPage(Model model) {
@@ -48,11 +52,10 @@ public class OrderAdd {
         /* Start Setting Order */
         java.util.Date currentDateTime = new java.util.Date();
 
-        Calendar calendar = Calendar.getInstance();
-
         Date dateOfOrder = new Date(currentDateTime.getTime());
-        String numberOfOrder = "P" + calendar.get(Calendar.MONTH) + "001"; // Нужно заменить последние 3 цифры
-        String orderStatus = "В реализации";
+        String numberOfOrder = setNumberOfOrder(dateOfOrder);
+
+        String orderStatus = "Awaiting";
         Double freightCost = orderForm.getFreightCost();
         String paymentPeriod = orderForm.getPaymentPeriod();
         String additionalInformation = orderForm.getAdditionalInformation();
@@ -235,5 +238,18 @@ public class OrderAdd {
         stock.setStockCountry(stockCountry);
 
         return stock;
+    }
+
+    private String setNumberOfOrder(Date dateOfOrder){
+        RestTemplate restTemplate = new RestTemplate();
+        Orders lastOrder = restTemplate.getForObject(URL_ORDER_LAST, Orders.class);
+
+        String numberOfLastOrder = lastOrder.getNumberOfOrder();
+        int num = Integer.parseInt(numberOfLastOrder.substring(3, numberOfLastOrder.length()));
+        String formatted = String.format("%03d", ++num);
+
+        DateFormat formatter = new SimpleDateFormat("MM");
+
+        return "P" + formatter.format(dateOfOrder) + formatted;
     }
 }
