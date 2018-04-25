@@ -29,7 +29,9 @@
             <td th:utext="${order.unloading.unloadingCountry}"></td>
             <td th:utext="${order.unloading.unloadingCity}"></td>
             <td th:utext="${order.userForwarderBY.name}"></td>
-            <td th:utext="${order.numberOfOrder}"></td>
+            <!--По нажатию на номер заказа выводится страница с подробной инфой о загрузке( там её удаление, редактирование, изменение -->
+            <td><a href="#" th:utext="${order.numberOfOrder}"></a></td>
+            <!------------------------------------------------------------------------------------>
             <td th:utext="${order.loading.loadingCountry}"></td>
             <td th:utext="${order.loading.loadingCity}"></td>
             <td th:utext="${order.cargo.cargoCount}"></td>
