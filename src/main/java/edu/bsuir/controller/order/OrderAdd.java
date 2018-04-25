@@ -98,7 +98,7 @@ public class OrderAdd {
         String loadDate = orderForm.getLoading().getLoadingDate().toString();
         String loadTime = orderForm.getLoading().getLoadingTime();
         loadingDate = Date.valueOf(loadDate);
-        loadingTime = Time.valueOf(loadTime.replaceAll("\\s","") + ":00");
+        loadingTime = Time.valueOf(loadTime + ":00");
 
         Loadings loadingToAdd = setLoadingToAdd(loadingCompanyName, loadingAdress, loadingPostalCode, loadingCity, loadingCountry, loadingDate, loadingTime);
         /* End Adding Loading */
@@ -111,7 +111,7 @@ public class OrderAdd {
         String unloadDate = orderForm.getLoading().getLoadingDate().toString();
         String unloadTime = orderForm.getUnloading().getUnloadingTime();
         unloadingDate = Date.valueOf(unloadDate);
-        unloadingTime = Time.valueOf(unloadTime.replaceAll("\\s","") + ":00");
+        unloadingTime = Time.valueOf(unloadTime + ":00");
 
         Unloadings unloadingToAdd = setUnloadingToAdd(unloadingClient, unloadingCity, unloadingCountry, unloadingDate, unloadingTime);
         /* End Adding Unloading */
