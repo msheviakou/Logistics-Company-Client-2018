@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.client.RestTemplate;
 
-import java.sql.Time;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.sql.Time;
 import java.util.Calendar;
 
 @Controller
@@ -40,7 +38,7 @@ public class OrderAdd {
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST)
     public String saveOrder(Model model, @ModelAttribute("orderForm") Orders orderForm, @SessionAttribute("userForm") Users userForm) {
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        //SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
         Date loadingDate = null;
         Date unloadingDate = null;
