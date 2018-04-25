@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="ordersRealization_container">
-    <table class="orders_realization_table display">
+    <table class="orders_realization_table cell-border" >
         <thead>
         <tr>
             <th>Клиент</th>
@@ -24,7 +24,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="order : ${orders}">
+        <tr th:each="order : ${orders}" th:attr="data-state=${order.getOrderStatus()}">
             <td th:utext="${order.unloading.unloadingClient}"></td>
             <td th:utext="${order.unloading.unloadingCountry}"></td>
             <td th:utext="${order.unloading.unloadingCity}"></td>
