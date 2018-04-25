@@ -45,6 +45,10 @@
             changeNavigationText('Транспортные заказы');
             changeBreadCrumbText('Заказы в реализации');
             break;
+          case 'addOrder':
+            changeBreadCrumbText('Добавить заказ');
+            changeNavigationText('Заказ на загрузку');
+            break;
           default: return;
         }
         return;
