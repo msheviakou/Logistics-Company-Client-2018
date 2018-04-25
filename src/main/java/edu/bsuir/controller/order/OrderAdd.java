@@ -1,5 +1,6 @@
 package edu.bsuir.controller.order;
 
+import edu.bsuir.form.OrdersForm;
 import edu.bsuir.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -13,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.client.RestTemplate;
 
-import java.sql.Time;
 import java.sql.Date;
+import java.sql.Time;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 @Controller
@@ -38,14 +38,12 @@ public class OrderAdd {
     }
 
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST)
-    public String saveOrder(Model model, @ModelAttribute("orderForm") Orders orderForm, @SessionAttribute("userForm") Users userForm) {
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    public String saveOrder(Model model, @ModelAttribute("orderForm") OrdersForm orderForm, @SessionAttribute("userForm") Users userForm) throws ParseException {
 
         Date loadingDate = null;
         Date unloadingDate = null;
-        Time loadingTime = null;
-        Time unloadingTime = null;
+        Time loadingTime;
+        Time unloadingTime;
 
         /* Start Setting Order */
         java.util.Date currentDateTime = new java.util.Date();
@@ -98,9 +96,9 @@ public class OrderAdd {
         String loadingCountry = orderForm.getLoading().getLoadingCountry();
 
         String loadDate = orderForm.getLoading().getLoadingDate().toString();
-        String loadTime = (orderForm.getLoading().getLoadingTime()).toString();
+        String loadTime = orderForm.getLoading().getLoadingTime();
         loadingDate = Date.valueOf(loadDate);
-        loadingTime = Time.valueOf(loadTime);
+        loadingTime = Time.valueOf(loadTime + ":00");
 
         Loadings loadingToAdd = setLoadingToAdd(loadingCompanyName, loadingAdress, loadingPostalCode, loadingCity, loadingCountry, loadingDate, loadingTime);
         /* End Adding Loading */
@@ -111,9 +109,9 @@ public class OrderAdd {
         String unloadingCountry = orderForm.getUnloading().getUnloadingCountry();
 
         String unloadDate = orderForm.getLoading().getLoadingDate().toString();
-        String unloadTime = orderForm.getUnloading().getUnloadingTime().toString();
+        String unloadTime = orderForm.getUnloading().getUnloadingTime();
         unloadingDate = Date.valueOf(unloadDate);
-        unloadingTime = Time.valueOf(unloadTime);
+        unloadingTime = Time.valueOf(unloadTime + ":00");
 
         Unloadings unloadingToAdd = setUnloadingToAdd(unloadingClient, unloadingCity, unloadingCountry, unloadingDate, unloadingTime);
         /* End Adding Unloading */
