@@ -10,7 +10,6 @@
       url: name,
       cache: false,
       success: function(html) {
-        console.log('sdfsdfds');
         let $doc = $('<div></div>').html(html);
         let $el = $doc.find(`.${name}_container`);
         $('.content').append($el);
@@ -32,7 +31,6 @@
 
   // -------------EVENTS-------------------
   $('.site_menu__list').click((event) => {
-    console.log('sdfsdf');
     let { target } = event;
 
     while (target != this) {

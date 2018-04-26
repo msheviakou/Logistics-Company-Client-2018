@@ -17,7 +17,6 @@ import org.springframework.web.client.RestTemplate;
 import java.sql.Date;
 import java.sql.Time;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 @Controller
@@ -42,17 +41,12 @@ public class OrderAdd {
     }
 
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST)
-    public String saveOrder(Model model, @ModelAttribute("orderForm") OrdersForm orderForm, @SessionAttribute("userForm") Users userForm) throws ParseException {
-
-        Date loadingDate = null;
-        Date unloadingDate = null;
-        Time loadingTime;
-        Time unloadingTime;
+    public String saveOrder(Model model, @ModelAttribute("orderForm") OrdersForm orderForm, @SessionAttribute("userForm") Users userForm) {
 
         /* Start Setting Order */
         java.util.Date currentDateTime = new java.util.Date();
-
         Date dateOfOrder = new Date(currentDateTime.getTime());
+
         String numberOfOrder = setNumberOfOrder(dateOfOrder);
 
         String orderStatus = "Awaiting";
@@ -98,10 +92,8 @@ public class OrderAdd {
         String loadingCity = orderForm.getLoading().getLoadingCity();
         String loadingCountry = orderForm.getLoading().getLoadingCountry();
 
-        String loadDate = orderForm.getLoading().getLoadingDate().toString();
-        String loadTime = orderForm.getLoading().getLoadingTime();
-        loadingDate = Date.valueOf(loadDate);
-        loadingTime = Time.valueOf(loadTime + ":00");
+        Date loadingDate = Date.valueOf(orderForm.getLoading().getLoadingDate().toString());
+        Time loadingTime = Time.valueOf(orderForm.getLoading().getLoadingTime() + ":00");
 
         Loadings loadingToAdd = setLoadingToAdd(loadingCompanyName, loadingAdress, loadingPostalCode, loadingCity, loadingCountry, loadingDate, loadingTime);
         /* End Adding Loading */
@@ -111,10 +103,8 @@ public class OrderAdd {
         String unloadingCity = orderForm.getUnloading().getUnloadingCity();
         String unloadingCountry = orderForm.getUnloading().getUnloadingCountry();
 
-        String unloadDate = orderForm.getLoading().getLoadingDate().toString();
-        String unloadTime = orderForm.getUnloading().getUnloadingTime();
-        unloadingDate = Date.valueOf(unloadDate);
-        unloadingTime = Time.valueOf(unloadTime + ":00");
+        Date unloadingDate = Date.valueOf(orderForm.getLoading().getLoadingDate().toString());
+        Time unloadingTime = Time.valueOf(orderForm.getUnloading().getUnloadingTime() + ":00");
 
         Unloadings unloadingToAdd = setUnloadingToAdd(unloadingClient, unloadingCity, unloadingCountry, unloadingDate, unloadingTime);
         /* End Adding Unloading */
@@ -242,9 +232,11 @@ public class OrderAdd {
 
     private String setNumberOfOrder(Date dateOfOrder){
         RestTemplate restTemplate = new RestTemplate();
+
         Orders lastOrder = restTemplate.getForObject(URL_ORDER_LAST, Orders.class);
 
         String numberOfLastOrder = lastOrder.getNumberOfOrder();
+
         int num = Integer.parseInt(numberOfLastOrder.substring(3, numberOfLastOrder.length()));
         String formatted = String.format("%03d", ++num);
 
