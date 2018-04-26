@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="addOrder_container">
-    <form th:action="@{/addOrder}" th:object="${orderForm}" method="POST">
+    <form th:action="@{/addOrder}" th:object="${orderForm}" id="addOrderForm" method="POST">
       <div class="error_output"></div>
       <fieldset class="carrier">
         <legend class="carrier_text">Перевозчик</legend>
@@ -19,12 +19,6 @@
             <label><span class="label_text">Телефон</span><input type="text" th:field="*{carrier.carrierTelephone}"></label>
             <label><span class="label_text">Электронная почта</span><input type="email" th:field="*{carrier.carrierElMail}"></label>
           </div>
-          <!--<div class="about_carrier_column">-->
-            <!--<label><span class="label_text">Адресс</span><input type="text"></label>-->
-            <!--<label><span class="label_text">Почтовый индекс</span><input type="text"></label>-->
-            <!--<label><span class="label_text">Страна</span><input type="text"></label>-->
-            <!--<label><span class="label_text">Город</span><input type="text"></label>-->
-          <!--</div>-->
           <div class="about_carrier_column">
             <label><span class="label_text">Имя водителя</span><input type="text" th:field="*{carrier.driver.name}" /></label>
             <label><span class="label_text">Регистрационный номер</span><input type="text" th:field="*{carrier.driver.trukRegNumber}" /></label>
@@ -37,7 +31,7 @@
         <div class="cargo_info">
           <div class="about_cargo_row">
             <label class="cargo_description"><span class="label_text">Описание товара</span>
-              <textarea class="textarea_cargo" th:field="*{cargo.cargoDescription}" required></textarea>
+              <textarea class="textarea_cargo" th:field="*{cargo.cargoDescription}"></textarea>
             </label>
           </div>
           <div class="about_cargo_row">
@@ -119,7 +113,7 @@
       </fieldset>
       <div class="additional_inf">
         <label class="additional_inf_description"><span class="label_text">Дополнительная информация</span>
-          <textarea class="textarea_additional_inf" required th:field="*{additionalInformation}"></textarea>
+          <textarea class="textarea_additional_inf" th:field="*{additionalInformation}"></textarea>
         </label>
         <label>
           ФИО Экспедитора BY: <input type="text" th:field="*{userForwarderBY.name}" />
@@ -128,12 +122,13 @@
       <div class="add_order_submit">
         <!--После сабмита перекинуть на страницу с казками в реализцаии *предварительно провалидировать
         ( Если Ошибка - вывести её в  <div class="error_output"></div>-->
-        <input type="submit" class="add_order_submit_btn jump_btn" value="Добавить заказ"/>
+        <input type="submit" class="add_order_submit_btn jump_btn" id="add_order_submit_btn" value="Добавить заказ" disabled="disabled" />
       </div>
     </form>
     <!--<link rel="stylesheet" th:href="@{/static/css/addOrder.css}">-->
     <script th:src="@{/js/date.js}"></script>
     <script th:src="@{/js/time.js}"></script>
+    <script th:src="@{/validation/order.js}"></script>
   </div>
 
 </body>
