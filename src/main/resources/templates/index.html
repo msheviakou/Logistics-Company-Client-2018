@@ -14,6 +14,8 @@
 
   <!-----------------------------------------DATA-TABLES------------------------------------------------------------------------------>
   <link rel="stylesheet" type="text/css" th:href="@{https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css}">
 
   <script type="text/javascript" charset="utf8" th:src="@{https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js}"></script>
   <script type="text/javascript" charset="utf8" th:src="@{https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js}"></script>
@@ -39,10 +41,10 @@
 <main class="main">
   <secion class="menu_bar">
     <div class="site_menu_small">
-      <a href="#" class="menu_item_small statistics_item"><img th:src="@{/img/index/statistics.png}" alt="Statistics"></a>
-      <a href="#" class="menu_item_small trucks_item"><img th:src="@{/img/index/truck.png}" alt="Truck"></a>
-      <a href="#" class="menu_item_small users_item"><img th:src="@{/img/index/users.png}" alt="Users"></a>
-      <a href="#" class="menu_item_small settings_item"><img th:src="@{/img/index/settings.png}" alt="Settings"></a>
+      <a href="#" class="menu_item_small statistics_item" data-action="statistics"><img th:src="@{/img/index/statistics.png}" alt="Statistics"></a>
+      <a href="#" class="menu_item_small trucks_item" data-action="trucks"><img th:src="@{/img/index/truck.png}" alt="Truck"></a>
+      <a href="#" class="menu_item_small users_item" data-action="administration"><img th:src="@{/img/index/users.png}" alt="Users"></a>
+      <a href="#" class="menu_item_small settings_item" data-action="settings"><img th:src="@{/img/index/settings.png}" alt="Settings"></a>
     </div>
     <nav class="site_menu">
       <ul class="site_menu__list">
