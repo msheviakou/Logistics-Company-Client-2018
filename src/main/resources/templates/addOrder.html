@@ -17,7 +17,7 @@
             <label><span class="label_text">Название компании</span><input type="text" th:field="*{carrier.carrierCompanyName}"></label>
             <label><span class="label_text">Контактное лицо</span><input type="text" th:field="*{carrier.carrierContact}"></label>
             <label><span class="label_text">Телефон</span><input type="text" th:field="*{carrier.carrierTelephone}"></label>
-            <label><span class="label_text">Электронная почта</span><input type="email" th:field="*{carrier.carrierElMail}"></label>
+            <label><span class="label_text">Электронная почта</span><input type="text" th:field="*{carrier.carrierElMail}"></label>
           </div>
           <div class="about_carrier_column">
             <label><span class="label_text">Имя водителя</span><input type="text" th:field="*{carrier.driver.name}" /></label>
@@ -75,10 +75,8 @@
           <div class="unloading_info">
             <div class="unloading_stock_info">
               <label><span class="label_text">Выберите склад</span>
-              <!-- ATTENTION!!!!-->
               <select>
                 <option value="Склад 1">Склад 1</option>
-                <!--ТУТ ВЫВЕСТИ все склады-->
               </select>
               </label>
               <!-- VALUE в инпутах должны автоматически заполняться после выбора склада из selecta-->
@@ -120,12 +118,9 @@
         </label>
       </div>
       <div class="add_order_submit">
-        <!--После сабмита перекинуть на страницу с казками в реализцаии *предварительно провалидировать
-        ( Если Ошибка - вывести её в  <div class="error_output"></div>-->
         <input type="submit" class="add_order_submit_btn jump_btn" id="add_order_submit_btn" value="Добавить заказ" disabled="disabled" />
       </div>
     </form>
-    <!--<link rel="stylesheet" th:href="@{/static/css/addOrder.css}">-->
     <script th:src="@{/js/date.js}"></script>
     <script th:src="@{/js/time.js}"></script>
     <script th:src="@{/validation/order.js}"></script>
