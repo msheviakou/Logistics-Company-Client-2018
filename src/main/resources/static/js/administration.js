@@ -31,7 +31,8 @@
       {
         text: 'Добавить',
         action: function ( e, dt, node, config ) {
-          alert( 'Button activated' );
+          document.querySelector('.modal_window--add_user').dataset.state = 'run';
+          document.body.classList.add('modal-active');
         },
         className: 'MyBtnClass',
       },
@@ -82,15 +83,21 @@
     return false;
   });
 
-  const closeUserDeleteModalWindow = () => {
-    document.querySelector('.modal_window--user_delete').dataset.state = "";
-    document.querySelector('.modal_window--user_delete').dataset.state = 'away';
+  const closeModalWindow = (mwDOM, state) => {
+    mwDOM.dataset.state = "";
+    mwDOM.dataset.state = state;
     document.body.classList.remove('modal-active');
   }
 
-  $('.close_btn').click(closeUserDeleteModalWindow);
-
-  $('.decline_delete_user_btn').click(closeUserDeleteModalWindow);
+  $('.close_add_user_mw_btn').click(() => {
+    closeModalWindow(document.querySelector('.modal_window--add_user'), 'away');
+    });
+  $('.close_delete_user_mw_btn').click(() => {
+    closeModalWindow(document.querySelector('.modal_window--user_delete'), 'away');
+  });
+  $('.decline_delete_user_btn').click(() => {
+    closeModalWindow(document.querySelector('.modal_window--user_delete'), 'away');
+  });
 
 
 

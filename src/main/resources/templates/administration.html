@@ -27,11 +27,11 @@
       </tbody>
     </table>
   </div>
-    <!------------------------MODAL-WINDOWS_____________________________-->
+    <!------------------------MODAL-WINDOWS------------------------------------------>
     <div class="modal_window modal_window--user_delete" data-state="">
       <div class="modal_background">
         <div class="modal modal_user_delete">
-          <label class="close_btn">
+          <label class="close_delete_user_mw_btn close_btn">
             <i class="fa fa-times" aria-hidden="true"></i>
           </label>
           <h1>Вы точно хотите удалить данного пользователя?</h1>
@@ -42,14 +42,53 @@
         </div>
       </div>
     </div>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="modal_window modal_window--add_user" data-state="">
+      <div class="modal_background">
+        <div class="modal modal_add_user">
+          <label class="close_add_user_mw_btn close_btn">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </label>
+          <h3>Enquiry Form</h3>
+          <form th:action="@{/addUser}"
+                th:object="${userObj}" method="POST">
+            <span>
+              <label>Имя</label>
+              <input name="Name" type="text" placeholder="Your Name" required th:field="${userObj.name}" >
+            </span>
+            <span>
+              <label>Логин</label>
+              <input name="Mobile" type="text" placeholder="Mobile Number" required th:field="${userObj.login}">
+            </span>
+            <span>
+              <label>Должность</label>
+              <select required th:field="${userObj.post}">
+                <option value="Экспедитор">Экспедитор</option>
+                <option value="Управляющий складом">Управляющий складом</option>
+              </select>
+            </span>
+            <span>
+              <label>Password</label>
+              <input name="Password" type="Password" placeholder="Your Password" required th:field="${userObj.password}">
+            </span>
+            <span>
+              <label>Password</label>
+              <input name="Password_Conf" type="Password" placeholder="Confirm Password" required>
+            </span>
+            <div class="add_user_buttons">
+              <input type="submit" value="Добавить">
+              <input type="reset" value="reset">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <!-------------------------------------------------------------------------------->
     <link rel="stylesheet" th:href="@{/css/administration.css}">
     <link rel="stylesheet" th:href="@{/common/modal-windows/a-u-sure.css}">
+    <link rel="stylesheet" th:href="@{//fonts.googleapis.com/css?family=Montserrat:400,700}" >
+    <link rel="stylesheet" th:href="@{/common/modal-windows/addUser.css}">
     <script th:src="@{/js/administration.js}"></script>
-
-    <script>
-      // document.querySelector('.modal_window--user_delete').dataset.state = 'run';
-    </script>
   </div>
 </body>
 </html>

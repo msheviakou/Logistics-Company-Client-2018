@@ -11,18 +11,21 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class Administration {
 
-    @Value("${url.users}")
-    private String URL_USERS;
+  @Value("${url.users}")
+  private String URL_USERS;
 
-    @RequestMapping(value = {"/administration"}, method = RequestMethod.GET)
-    public String usersList(Model model) {
+  @RequestMapping(value = {"/administration"}, method = RequestMethod.GET)
+  public String usersList(Model model) {
 
-        RestTemplate restTemplate = new RestTemplate();
+    RestTemplate restTemplate = new RestTemplate();
 
-        Users[] users = restTemplate.getForObject(URL_USERS, Users[].class);
+    Users[] users = restTemplate.getForObject(URL_USERS, Users[].class);
 
-        model.addAttribute("users", users);
+    model.addAttribute("users", users);
 
-        return "administration";
-    }
+    Users userObj = new Users();
+    model.addAttribute("userObj", userObj);
+
+    return "administration";
+  }
 }
