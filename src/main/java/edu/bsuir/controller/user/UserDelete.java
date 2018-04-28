@@ -20,8 +20,6 @@ public class UserDelete {
 
         restTemplate.delete(URL_USER + "/" + userId);
 
-        System.out.println("Пользователь успешно удалён!");
-
-        return "redirect:/administration";
+        return "administration";
     }
 }

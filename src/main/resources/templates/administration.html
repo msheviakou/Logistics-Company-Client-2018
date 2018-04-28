@@ -18,7 +18,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each ="user : ${users}">
+      <tr th:each ="user : ${users}" th:attr="data-user-id=${user.id}">
         <td></td>
         <td th:utext="${user.name}"></td>
         <td th:utext="${user.post}"></td>
@@ -27,8 +27,29 @@
       </tbody>
     </table>
   </div>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/administration.css}"/>
+    <!------------------------MODAL-WINDOWS_____________________________-->
+    <div class="modal_window modal_window--user_delete" data-state="">
+      <div class="modal_background">
+        <div class="modal modal_user_delete">
+          <label class="close_btn">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </label>
+          <h1>Вы точно хотите удалить данного пользователя?</h1>
+          <div class="user_delete_buttons">
+            <a href="#" class="overlay_btn btn--accept accept_delete_user_btn">Да</a>
+            <a href="#" class="overlay_btn btn--decline decline_delete_user_btn">Нет</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-------------------------------------------------------------------------------->
+    <link rel="stylesheet" th:href="@{/css/administration.css}">
+    <link rel="stylesheet" th:href="@{/common/modal-windows/a-u-sure.css}">
     <script th:src="@{/js/administration.js}"></script>
+
+    <script>
+      // document.querySelector('.modal_window--user_delete').dataset.state = 'run';
+    </script>
   </div>
 </body>
 </html>

@@ -1,0 +1,8 @@
+.btn--accept {
+  margin-right: 5px;
+  background-color: #2ecc71;
+}
+
+.btn--decline {
+  background-color: #e74c3c;
+}
