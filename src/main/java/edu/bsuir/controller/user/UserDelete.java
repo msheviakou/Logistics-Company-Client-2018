@@ -20,6 +20,6 @@ public class UserDelete {
 
         restTemplate.delete(URL_USER + "/" + userId);
 
-        return "administration";
+        return "redirect:/administration";
     }
 }

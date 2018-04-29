@@ -1,9 +1,14 @@
 ;(()=> {
-  //
+
+  let mwUserDelete = document.querySelector('.modal_window--user_delete');
+  let mwUserAdd = document.querySelector('.modal_window--add_user');
+  mwUserDelete.dataset.state = "none";
+  mwUserAdd.dataset.state = "none";
+
   let tableUsers = $('#users_table').DataTable({
     dom: 'Bfrtip',
     lengthChange: false,
-    pageLength: 2,
+    // pageLength: 2,
     oLanguage: {
       sSearch: "Поиск:"
     },
@@ -31,8 +36,8 @@
       {
         text: 'Добавить',
         action: function ( e, dt, node, config ) {
-          document.querySelector('.modal_window--add_user').dataset.state = 'run';
-          document.body.classList.add('modal-active');
+          changeModalWindowState(mwUserAdd, 'run');
+          $('body').addClass('modal-active');
         },
         className: 'MyBtnClass',
       },
@@ -47,8 +52,8 @@
       {
         text: 'Удалить',
         action: function ( e, dt, node, config ) {
-          document.querySelector('.modal_window--user_delete').dataset.state = 'run';
-          document.body.classList.add('modal-active');
+          changeModalWindowState(mwUserDelete, 'run');
+          $('body').addClass('modal-active');
         },
         className: 'MyBtnClass',
         enabled: false,
@@ -64,42 +69,42 @@
   } );
 
   tableUsers.on( 'select', function ( e, dt, type, indexes ) {
-    let k = document.querySelector('.custom-selected');
-    if( document.querySelector('.custom-selected') !== null) {
-      k.classList.remove('custom-selected');
+    let selectedRow = $('.custom-selected');
+    if( selectedRow !== null) {
+      selectedRow.removeClass('custom-selected');
     }
     tableUsers[ type ]( indexes ).nodes().to$().addClass( 'custom-selected' );
   } );
-//
+
+  const changeModalWindowState = (mwDOM, state) => {
+    void mwDOM.offsetWidth;
+    mwDOM.dataset.state = state;
+    $('body').removeClass('modal-active');
+  };
 
   $('.accept_delete_user_btn').click((event)=> {
-    let userId = document.querySelector('.custom-selected').dataset.userId;
-    console.log(userId);
+    let userId = $('.custom-selected').data('userId');
     $.ajax({
       url: `/deleteUser/${userId}`,
       method: 'DELETE',
       cache: false,
     });
+    changeModalWindowState(mwUserDelete, 'away');
+    $('.custom-selected').remove();
     return false;
   });
 
-  const closeModalWindow = (mwDOM, state) => {
-    mwDOM.dataset.state = "";
-    mwDOM.dataset.state = state;
-    document.body.classList.remove('modal-active');
-  }
-
   $('.close_add_user_mw_btn').click(() => {
-    closeModalWindow(document.querySelector('.modal_window--add_user'), 'away');
+    changeModalWindowState(mwUserAdd, 'away');
     });
+
   $('.close_delete_user_mw_btn').click(() => {
-    closeModalWindow(document.querySelector('.modal_window--user_delete'), 'away');
+    changeModalWindowState(mwUserDelete, 'away');
   });
+
   $('.decline_delete_user_btn').click(() => {
-    closeModalWindow(document.querySelector('.modal_window--user_delete'), 'away');
+    changeModalWindowState(mwUserDelete, 'away');
   });
-
-
 
 
 })();

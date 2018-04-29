@@ -6,3 +6,7 @@
 .btn--decline {
   background-color: #e74c3c;
 }
+
+.user_delete_buttons {
+  height: 40%;
+}
