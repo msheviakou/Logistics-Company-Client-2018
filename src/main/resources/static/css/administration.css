@@ -3,3 +3,7 @@
   max-width: 600px;
   min-height: 200px;
 }
+
+.modal.modal_add_user {
+  min-width: 500px;
+}

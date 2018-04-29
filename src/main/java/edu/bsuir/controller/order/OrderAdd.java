@@ -31,11 +31,25 @@ public class OrderAdd {
     @Value("${url.order.last}")
     private String URL_ORDER_LAST;
 
+    @Value("${url.users.forwarder}")
+    private String URL_USERS_FORWARDERS;
+
+    @Value("${url.stocks}")
+    private String URL_STOCKS;
+
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.GET)
     public String showAddOrderPage(Model model) {
 
         Orders orderForm = new Orders();
         model.addAttribute("orderForm", orderForm);
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        Users[] users = restTemplate.getForObject(URL_USERS_FORWARDERS, Users[].class);
+        model.addAttribute("users", users);
+
+        Stocks[] stocks = restTemplate.getForObject(URL_STOCKS, Stocks[].class);
+        model.addAttribute("stocks", stocks);
 
         return "addOrder";
     }
@@ -122,9 +136,9 @@ public class OrderAdd {
         /* End Adding Stock */
 
         /* Start Adding UserForwarderBY */
-        String userForwarderBYname = orderForm.getUserForwarderBY().getName();
+        int userForwarderId = orderForm.getUserForwarderBY().getId();
 
-        Users userForwarderBYtoAdd = setUserForwarderBYToAdd(userForwarderBYname);
+        Users userForwarderBYtoAdd = setUserForwarderBYToAdd(userForwarderId);
         /* End Adding UserForwarderBY */
 
         /* Start Setting Objects*/
@@ -200,10 +214,10 @@ public class OrderAdd {
         return unloading;
     }
 
-    private Users setUserForwarderBYToAdd(String userForwarderBYname) {
+    private Users setUserForwarderBYToAdd(int userForwarderBYid) {
         Users userForwarderBY = new Users();
 
-        userForwarderBY.setName(userForwarderBYname);
+        userForwarderBY.setId(userForwarderBYid);
 
         return userForwarderBY;
     }
