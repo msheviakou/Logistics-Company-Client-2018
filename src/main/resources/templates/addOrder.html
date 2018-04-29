@@ -75,16 +75,18 @@
           <div class="unloading_info">
             <div class="unloading_stock_info">
               <label><span class="label_text">Выберите склад</span>
-              <select>
-                <option value="Склад 1">Склад 1</option>
-              </select>
+                <select class="select_stock" th:field="*{id}">
+                  <option value="0" selected disabled hidden>Выбрать</option>
+                  <option value="-1">Новый склад</option>
+                  <option th:each ="stock : ${stocks}" th:value="${stock.id}" th:utext="${stock.stockName}"></option>
+                </select>
               </label>
               <!-- VALUE в инпутах должны автоматически заполняться после выбора склада из selecta-->
-              <label><span class="label_text">Название склада</span><input type="text" th:field="*{unloading.stock.stockName}" /></label>
-              <label><span class="label_text">Адрес склада</span><input type="text" th:field="*{unloading.stock.stockAdress}" /></label>
-              <label><span class="label_text">Почтовый индекс</span><input type="text" th:field="*{unloading.stock.stockPostalCode}" /></label>
-              <label><span class="label_text">Город</span><input type="text" th:field="*{unloading.stock.stockCity}" /></label>
-              <label><span class="label_text">Страна</span><input type="text" th:field="*{unloading.stock.stockCountry}" value=""/></label>
+              <label><span class="label_text">Название склада</span><input class="stock_name" type="text" th:field="*{unloading.stock.stockName}" /></label>
+              <label><span class="label_text">Адрес склада</span><input class="stock_address" type="text" th:field="*{unloading.stock.stockAdress}" /></label>
+              <label><span class="label_text">Почтовый индекс</span><input class="stock_postal_code" type="text" th:field="*{unloading.stock.stockPostalCode}" /></label>
+              <label><span class="label_text">Город</span><input class="stock_city" type="text" th:field="*{unloading.stock.stockCity}" /></label>
+              <label><span class="label_text">Страна</span><input class="stock_country" type="text" th:field="*{unloading.stock.stockCountry}" value=""/></label>
             </div>
             <div class="unloading_client_info">
               <label><span class="label_text">Клиент</span><input type="text" th:field="*{unloading.unloadingClient}" /></label>
@@ -113,16 +115,17 @@
         <label class="additional_inf_description"><span class="label_text">Дополнительная информация</span>
           <textarea class="textarea_additional_inf" th:field="*{additionalInformation}"></textarea>
         </label>
-        <label>
-          ФИО Экспедитора BY: <input type="text" th:field="*{userForwarderBY.name}" />
-        </label>
       </div>
+      <label class="forwarder_BY_inf"><span class="label_text">Экспедитор BY</span>
+        <select th:field="*{userForwarderBY.id}">
+          <option th:each ="user : ${users}" th:value="${user.id}" th:utext="${user.name}"></option>
+        </select>
+      </label>
       <div class="add_order_submit">
         <input type="submit" class="add_order_submit_btn jump_btn" id="add_order_submit_btn" value="Добавить заказ" disabled="disabled" />
       </div>
     </form>
-    <script th:src="@{/js/date.js}"></script>
-    <script th:src="@{/js/time.js}"></script>
+    <script th:src="@{/js/addOrder.js}"></script>
     <script th:src="@{/validation/order.js}"></script>
   </div>
 

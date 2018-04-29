@@ -2,7 +2,7 @@
 
     $('.orders_realization_table').DataTable({
       lengthChange: false,
-      pageLength: 2,
+      pageLength: 20,
       oLanguage: {
         sSearch: "Поиск:"
       },

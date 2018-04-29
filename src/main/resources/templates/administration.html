@@ -54,11 +54,11 @@
                 th:object="${userObj}" method="POST">
             <span>
               <label>Имя</label>
-              <input name="Name" type="text" placeholder="Your Name" required th:field="${userObj.name}" >
+              <input name="name" type="text" placeholder="Имя" required th:field="${userObj.name}" >
             </span>
             <span>
               <label>Логин</label>
-              <input name="Mobile" type="text" placeholder="Mobile Number" required th:field="${userObj.login}">
+              <input name="login" type="text" placeholder="Логин" required th:field="${userObj.login}">
             </span>
             <span>
               <label>Должность</label>
@@ -68,16 +68,16 @@
               </select>
             </span>
             <span>
-              <label>Password</label>
-              <input name="Password" type="Password" placeholder="Your Password" required th:field="${userObj.password}">
+              <label>Пароль</label>
+              <input name="Password" type="Password" placeholder="Введите пароль" required th:field="${userObj.password}">
             </span>
             <span>
-              <label>Password</label>
-              <input name="Password_Conf" type="Password" placeholder="Confirm Password" required>
+              <label>Пароль</label>
+              <input name="Password_Conf" type="Password" placeholder="Повторите пароль" required>
             </span>
             <div class="add_user_buttons">
               <input type="submit" value="Добавить">
-              <input type="reset" value="reset">
+              <input type="reset" value="Очистить">
             </div>
           </form>
         </div>
