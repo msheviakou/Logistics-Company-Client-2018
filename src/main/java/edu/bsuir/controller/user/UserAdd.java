@@ -27,27 +27,25 @@ public class UserAdd {
     @RequestMapping(value = {"/addUser"}, method = RequestMethod.GET)
     public String showAddUserPage(Model model) {
 
-        Users userForm = new Users();
-        model.addAttribute("userForm", userForm);
+        Users userObj = new Users();
+        model.addAttribute("userObj", userObj);
 
         return "addUser";
     }
 
     @RequestMapping(value = {"/addUser"}, method = RequestMethod.POST)
-    public String savePerson(Model model, @ModelAttribute("userForm") Users userForm) {
+    public String savePerson(Model model, @ModelAttribute("userObj") Users userObj) {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        Users user = restTemplate.getForObject(URL_USER_LOGIN + "/" + userForm.getLogin(), Users.class);
-        if(user.getId() == 0){
-            HttpEntity<Users> requestBody = new HttpEntity<>(userForm);
-            ResponseEntity<Users> result = restTemplate.postForEntity(URL_USER, requestBody, Users.class);
+        HttpEntity<Users> requestBody = new HttpEntity<>(userObj);
 
-            if (result.getStatusCode() == HttpStatus.OK) {
-                userForm = result.getBody();
-                if (userForm != null)
-                    return "redirect:/administration";
-            }
+        ResponseEntity<Users> result = restTemplate.postForEntity(URL_USER, requestBody, Users.class);
+
+        if (result.getStatusCode() == HttpStatus.OK) {
+            userObj = result.getBody();
+            if (userObj != null)
+                return "redirect:/index";
         }
 
         model.addAttribute("errorMessage", messageError);

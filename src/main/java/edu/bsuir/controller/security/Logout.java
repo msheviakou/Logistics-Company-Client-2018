@@ -19,7 +19,7 @@ public class Logout {
     @Value("${message.logoutSuccessful}")
     private String messageLogout;
 
-    @RequestMapping(value = {"/logout"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
     public String logout(Model model, @SessionAttribute("userForm") Users userForm){
 
         System.out.println(userForm.getName() + " successfully logout!");

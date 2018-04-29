@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="ordersRealization_container">
-    <table class="orders_realization_table display">
+    <table class="orders_realization_table cell-border" >
         <thead>
         <tr>
             <th>Клиент</th>
@@ -24,12 +24,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="order : ${orders}">
+        <tr th:each="order : ${orders}" th:attr="data-state=${order.getOrderStatus()}">
             <td th:utext="${order.unloading.unloadingClient}"></td>
             <td th:utext="${order.unloading.unloadingCountry}"></td>
             <td th:utext="${order.unloading.unloadingCity}"></td>
             <td th:utext="${order.userForwarderBY.name}"></td>
-            <td th:utext="${order.numberOfOrder}"></td>
+            <!--По нажатию на номер заказа выводится страница с подробной инфой о загрузке( там её удаление, редактирование, изменение -->
+            <td><a href="#" th:utext="${order.numberOfOrder}"></a></td>
+            <!------------------------------------------------------------------------------------>
             <td th:utext="${order.loading.loadingCountry}"></td>
             <td th:utext="${order.loading.loadingCity}"></td>
             <td th:utext="${order.cargo.cargoCount}"></td>
