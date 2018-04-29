@@ -21,6 +21,9 @@ public class UserAdd {
     @Value("${url.user}")
     private String URL_USER;
 
+    @Value("${url.user.login}")
+    private String URL_USER_LOGIN;
+
     @RequestMapping(value = {"/addUser"}, method = RequestMethod.GET)
     public String showAddUserPage(Model model) {
 
@@ -48,4 +51,6 @@ public class UserAdd {
         model.addAttribute("errorMessage", messageError);
         return "addUser";
     }
+
+
 }
