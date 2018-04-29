@@ -46,7 +46,7 @@ public class UserAdd {
             if (result.getStatusCode() == HttpStatus.OK) {
                 userForm = result.getBody();
                 if (userForm != null)
-                    return "redirect:/administration";
+                    return "redirect:/index";
             }
         }
 
