@@ -21,6 +21,9 @@ public class UserAdd {
     @Value("${url.user}")
     private String URL_USER;
 
+    @Value("${url.user.login}")
+    private String URL_USER_LOGIN;
+
     @RequestMapping(value = {"/addUser"}, method = RequestMethod.GET)
     public String showAddUserPage(Model model) {
 
@@ -35,17 +38,21 @@ public class UserAdd {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        HttpEntity<Users> requestBody = new HttpEntity<>(userForm);
+        Users user = restTemplate.getForObject(URL_USER_LOGIN + "/" + userForm.getLogin(), Users.class);
+        if(user.getId() == 0){
+            HttpEntity<Users> requestBody = new HttpEntity<>(userForm);
+            ResponseEntity<Users> result = restTemplate.postForEntity(URL_USER, requestBody, Users.class);
 
-        ResponseEntity<Users> result = restTemplate.postForEntity(URL_USER, requestBody, Users.class);
-
-        if (result.getStatusCode() == HttpStatus.OK) {
-            userForm = result.getBody();
-            if (userForm != null)
-                return "redirect:/administration";
+            if (result.getStatusCode() == HttpStatus.OK) {
+                userForm = result.getBody();
+                if (userForm != null)
+                    return "redirect:/administration";
+            }
         }
 
         model.addAttribute("errorMessage", messageError);
         return "addUser";
     }
+
+
 }
