@@ -5,6 +5,9 @@
 @import "../common/site-menu/site-menu.css";
 @import "../common/breadcrumb/breadcrumb.css";
 @import "../common/button/jump_btn.css";
+@import "../common/modal-windows/modal-window.css";
+@import "../common/button/close_btn.css";
+@import "../common/button/overlay_btn.css";
 /*************************************/
 @import "./addOrder.css";
 @import "./ordersRealization.css";

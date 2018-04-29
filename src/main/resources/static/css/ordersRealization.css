@@ -1,3 +1,19 @@
 .ordersRealization_container {
   margin-top: 25px;
 }
+
+.cells_border {
+  border-color: #111;
+}
+
+.awaiting {
+  background-color: #E69797 !important;
+}
+
+.transported {
+  background-color: #ffe784 !important;
+}
+
+.arrived {
+  background-color: #D1FF94 !important;
+}

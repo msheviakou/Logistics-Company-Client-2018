@@ -54,7 +54,39 @@
       target= target.parentNode;
     }
 
-  })
+  });
+
+  $('.site_menu_small').click((event) => {
+    let { target } = event;
+
+    while (target != this) {
+      if (target.classList.contains('menu_item_small')) {
+        clearDynamicalField();
+        showViewPage(target.dataset.action);
+
+        switch (target.dataset.action) {
+          case 'statistics':
+
+            break;
+          case 'trucks':
+
+            break;
+          case 'administration':
+            changeBreadCrumbText('Администрирование');
+            changeNavigationText('Управление пользователями');
+            break;
+          case 'settings':
+
+            break;
+          default: return;
+        }
+        return;
+      }
+      target= target.parentNode;
+    }
+  });
+
+
 
 
 

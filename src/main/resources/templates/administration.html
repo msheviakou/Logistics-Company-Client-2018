@@ -1,33 +1,94 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Администрирование</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
 <body>
-<div class="administration_content">
-    <h1>Список пользователей</h1>
-
-    <div>
-        <table>
-            <tr>
-                <th>Имя</th>
-                <th>Должность</th>
-            </tr>
-            <tr th:each ="user : ${users}">
-                <td th:utext="${user.name}"></td>
-                <td th:utext="${user.post}"></td>
-                <td><a th:href="${'/userForm/' + user.id}">Узнать больше</a></td>
-            </tr>
-        </table>
+  <div class="administration_container">
+  <div class="wrapper_users_table">
+    <table id="users_table" class="cell-border">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Имя</th>
+        <th>Должность</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each ="user : ${users}" th:attr="data-user-id=${user.id}">
+        <td></td>
+        <td th:utext="${user.name}"></td>
+        <td th:utext="${user.post}"></td>
+        <!--<td><a th:href="${'/userForm/' + user.id}">Узнать больше</a></td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+    <!------------------------MODAL-WINDOWS------------------------------------------>
+    <div class="modal_window modal_window--user_delete">
+      <div class="modal_background">
+        <div class="modal modal_user_delete">
+          <label class="close_delete_user_mw_btn close_btn">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </label>
+          <h1>Вы точно хотите удалить данного пользователя?</h1>
+          <div class="user_delete_buttons">
+            <a href="#" class="overlay_btn btn--accept accept_delete_user_btn">Да</a>
+            <a href="#" class="overlay_btn btn--decline decline_delete_user_btn">Нет</a>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <a href="addUser">Добавить пользователя</a>
-
-    <form th:action="@{/logout}" method="POST">
-        <input type="submit" value="Выйти"/>
-    </form>
-</div>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="modal_window modal_window--add_user">
+      <div class="modal_background">
+        <div class="modal modal_add_user">
+          <label class="close_add_user_mw_btn close_btn">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </label>
+          <h3>Добавление пользователя</h3>
+          <form th:action="@{/addUser}"
+                th:object="${userObj}" method="POST">
+            <span>
+              <label>Имя</label>
+              <input name="name" type="text" placeholder="Имя" required th:field="${userObj.name}" >
+            </span>
+            <span>
+              <label>Логин</label>
+              <input name="login" type="text" placeholder="Логин" required th:field="${userObj.login}">
+            </span>
+            <span>
+              <label>Должность</label>
+              <select required th:field="${userObj.post}">
+                <option value="Экспедитор">Экспедитор</option>
+                <option value="Управляющий складом">Управляющий складом</option>
+              </select>
+            </span>
+            <span>
+              <label>Пароль</label>
+              <input name="Password" type="Password" placeholder="Введите пароль" required th:field="${userObj.password}">
+            </span>
+            <span>
+              <label>Пароль</label>
+              <input name="Password_Conf" type="Password" placeholder="Повторите пароль" required>
+            </span>
+            <div class="add_user_buttons">
+              <input type="submit" value="Добавить">
+              <input type="reset" value="Очистить">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-------------------------------------------------------------------------------->
+    <link rel="stylesheet" th:href="@{/css/administration.css}">
+    <link rel="stylesheet" th:href="@{/common/modal-windows/a-u-sure.css}">
+    <link rel="stylesheet" th:href="@{//fonts.googleapis.com/css?family=Montserrat:400,700}" >
+    <link rel="stylesheet" th:href="@{/common/modal-windows/addUser.css}">
+    <script th:src="@{/js/administration.js}"></script>
+  </div>
 </body>
 </html>

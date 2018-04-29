@@ -97,12 +97,18 @@ label {
 }
 
 .cargo_description,
-.additional_inf_description{
+.additional_inf_description,
+.forwarder_BY_inf {
   justify-content: flex-start;
 }
 
 .about_cargo_row input {
   max-width: 100px;
+}
+
+.select_stock {
+  max-width: 200px;
+  font-size: 15px;
 }
 
 .addresses {

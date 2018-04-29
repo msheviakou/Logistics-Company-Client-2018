@@ -1,0 +1,83 @@
+input[type="submit"],a,input[type="reset"]{
+  transition:.5s ease-in;
+  -webkit-transition:.5s ease-in;
+  -moz-transition:.5s ease-in;
+  -o-transition:.5s ease-in;
+  -ms-transition:.5s ease-in;
+}
+
+.modal.modal_add_user {
+  padding:2em;
+  background:rgba(0, 0, 0, 0.22);
+}
+
+.modal.modal_add_user  h3{
+  font-size:1.5em;
+  color:#f1730f;
+  text-align:center;
+  margin-bottom:1em;
+}
+
+.modal.modal_add_user  form span{
+  display:block;
+  margin-bottom: 1em;
+}
+
+.modal.modal_add_user span label{
+  width: 35%;
+  font-size: .85em;
+  color: #212121;
+  background: #e9e9e9;
+  display: inline-block;
+  padding: 13px;
+  text-transform: uppercase;
+  float: left;
+  letter-spacing: 2px;
+  text-align: center;
+  border: 1px solid #e9e9e9;
+}
+
+.modal.modal_add_user input[type="text"],.agileits_w3layouts_main_grid input[type="email"],.agileits_w3layouts_main_grid select,
+.modal.modal_add_user input[type="password"]{
+  padding: 13px 15px;
+  color: #999;
+  outline: none;
+  width: 65%;
+  font-size: .85em;
+  background: none;
+  border: 1px solid #e9e9e9;
+}
+
+.modal.modal_add_user select{
+  width: 65% !important;
+  padding: 11px 15px !important;
+}
+
+.add_user_buttons {
+  padding:1em 0 0;
+}
+
+.add_user_buttons input[type="submit"], .add_user_buttons input[type="reset"] {
+  padding: 13px 0px;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  font-size: 1em;
+  letter-spacing: 1px;
+  color: #fff;
+  cursor: pointer;
+  width: 30%;
+}
+
+.add_user_buttons input[type="submit"],.add_user_buttons input[type="reset"]:hover {
+  background: #f1730f;
+}
+
+.add_user_buttons input[type="submit"]{
+  margin-right:1em;
+}
+
+.add_user_buttons input[type="reset"],.add_user_buttons input[type="submit"]:hover {
+  background: #1dc3fb;
+}
+
