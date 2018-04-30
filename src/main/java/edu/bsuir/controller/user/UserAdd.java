@@ -39,20 +39,15 @@ public class UserAdd {
         RestTemplate restTemplate = new RestTemplate();
 
         Users user = restTemplate.getForObject(URL_USER_LOGIN + "/" + userObj.getLogin(), Users.class);
-        if(user.getId() == 0){
+
+        if (user.getId() == 0) {
             HttpEntity<Users> requestBody = new HttpEntity<>(userObj);
             ResponseEntity<Users> result = restTemplate.postForEntity(URL_USER, requestBody, Users.class);
-
             if (result.getStatusCode() == HttpStatus.OK) {
-                userObj = result.getBody();
-                if (userObj != null)
-                    return "redirect:/index";
+                return "redirect:/index";
             }
         }
-
         model.addAttribute("errorMessage", messageError);
-        return "addUser";
+        return "redirect:/index";
     }
-
-
 }
