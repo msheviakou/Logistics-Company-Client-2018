@@ -47,10 +47,7 @@ public class UserAdd {
                 return "redirect:/index";
             }
         }
-
         model.addAttribute("errorMessage", messageError);
         return "redirect:/index";
     }
-
-
 }
