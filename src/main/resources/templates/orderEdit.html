@@ -1,0 +1,142 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div class="editOrder_container">
+  <form th:action="@{/addOrder}" th:object="${order}" id="addOrderForm" method="POST">
+    <div class="error_output"></div>
+    <fieldset class="cargo">
+      <legend class="cargo_text">Статус заказа</legend>
+      <label class="order_status"><span class="label_text">Статус заказа</span>
+        <select th:field="${order.orderStatus}">
+          <option value="Awaiting">В ожидании загрузки</option>
+          <option value="Transported">Транспортируется на склад</option>
+          <option value="Arrived">Прибыл на склад</option>
+        </select>
+      </label>
+    </fieldset>
+    <fieldset class="carrier">
+      <legend class="carrier_text">Перевозчик</legend>
+      <div class="carrier_info">
+        <div class="about_carrier_column">
+          <label><span class="label_text">Название компании</span><input type="text" th:field="${order.carrier.carrierCompanyName}"></label>
+          <label><span class="label_text">Контактное лицо</span><input type="text" th:field="${order.carrier.carrierContact}"></label>
+          <label><span class="label_text">Телефон</span><input type="text" th:field="${order.carrier.carrierTelephone}"></label>
+          <label><span class="label_text">Электронная почта</span><input type="text" th:field="${order.carrier.carrierElMail}"></label>
+        </div>
+        <div class="about_carrier_column">
+          <label><span class="label_text">Имя водителя</span><input type="text" th:field="${order.carrier.driver.name}" /></label>
+          <label><span class="label_text">Регистрационный номер</span><input type="text" th:field="${order.carrier.driver.trukRegNumber}" /></label>
+          <label><span class="label_text">Телефон</span><input type="text" th:field="${order.carrier.driver.phoneNumber}" /></label>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset class="cargo">
+      <legend class="cargo_text">Груз</legend>
+      <div class="cargo_info">
+        <div class="about_cargo_row">
+          <label class="cargo_description"><span class="label_text">Описание товара</span>
+            <textarea class="textarea_cargo" th:field="${order.cargo.cargoDescription}"></textarea>
+          </label>
+        </div>
+        <div class="about_cargo_row">
+          <label><span class="label_text">Вес товара</span><input type="text" th:field="${order.cargo.cargoWeight}" /></label>
+          <label><span class="label_text">Количество</span><input type="text" th:field="${order.cargo.cargoCount}" /></label>
+          <label><span class="label_text">Документ</span>
+            <select th:field="${order.cargo.cargoDocument}" >
+              <option value="EX">EX</option>
+              <option value="BRAK">BRAK</option>
+              <option value="T1 PA">T1 PA</option>
+              <option value="T1 PT">T1 PT</option>
+              <option value="TIR">TIR</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </fieldset>
+    <div class="dates">
+      <div class="loading_date_and_time">
+        <label><span class="label_text">Дата загрузки</span><input type="text" class="loading_date date" th:field="${order.loading.loadingDate}" /></label>
+        <input type="text" class="loading_time time" th:field="${order.loading.loadingTime}" />
+      </div>
+      <div class="unloading_date_and_time">
+        <label><span class="label_text">Срок поставки</span><input type="text" class="unloading_date date" th:field="${order.unloading.unloadingDate}" /></label>
+        <input type="text" class="unloading_time time" th:field="${order.unloading.unloadingTime}" />
+      </div>
+    </div>
+    <div class="addresses">
+      <fieldset class="loading">
+        <legend class="loading_text">Адрес загрузки</legend>
+        <div class="loading_info">
+          <label><span class="label_text">Название компании</span><input type="text" th:field="${order.loading.loadingCompanyName}" /></label>
+          <label><span class="label_text">Адрес</span><input type="text" th:field="${order.loading.loadingAdress}" /></label>
+          <label><span class="label_text">Почтовый индекс</span><input type="text" th:field="${order.loading.loadingPostalCode}" /></label>
+          <label><span class="label_text">Город</span><input type="text" th:field="${order.loading.loadingCity}" /></label>
+          <label><span class="label_text">Страна</span><input type="text" th:field="${order.loading.loadingCountry}" /></label>
+        </div>
+      </fieldset>
+      <fieldset class="unloading">
+        <legend class="unloading_text">Адресс выгрузки</legend>
+        <div class="unloading_info">
+          <div class="unloading_stock_info">
+            <label><span class="label_text">Выберите склад</span>
+              <select class="select_stock" th:field="${order.unloading.stock.id}">
+                <option value="0" selected disabled hidden>Выбрать</option>
+                <option value="-1">Новый склад</option>
+                <option th:each ="stock : ${stocks}" th:value="${stock.id}" th:utext="${stock.stockName}"></option>
+              </select>
+            </label>
+            <label><span class="label_text">Название склада</span><input class="stock_name" type="text" th:field="${order.unloading.stock.stockName}" /></label>
+            <label><span class="label_text">Адрес склада</span><input class="stock_address" type="text" th:field="${order.unloading.stock.stockAdress}" /></label>
+            <label><span class="label_text">Почтовый индекс</span><input class="stock_postal_code" type="text" th:field="${order.unloading.stock.stockPostalCode}" /></label>
+            <label><span class="label_text">Город</span><input class="stock_city" type="text" th:field="${order.unloading.stock.stockCity}" /></label>
+            <label><span class="label_text">Страна</span><input class="stock_country" type="text" th:field="${order.unloading.stock.stockCountry}" value=""/></label>
+          </div>
+          <div class="unloading_client_info">
+            <label><span class="label_text">Клиент</span><input type="text" th:field="${order.unloading.unloadingClient}" /></label>
+            <label><span class="label_text">Город</span><input type="text" th:field="${order.unloading.unloadingCity}" /></label>
+            <label><span class="label_text">Страна</span><input type="text" th:field="${order.unloading.unloadingCountry}" /></label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <fieldset class="payment">
+      <legend class="payment_text">Ставка/Фрахт</legend>
+      <div class="about_payment_row">
+        <label><span class="label_text">Сумма</span><input type="text" th:field="${order.freightCost}" /></label>
+        <label><span class="label_text">Срок оплаты</span>
+          <select th:field="${order.paymentPeriod}" >
+            <option value="7">7 дней</option>
+            <option value="14">14 дней</option>
+            <option value="21">21 день</option>
+            <option value="30">30 дней</option>
+            <option value="45">45 дней</option>
+          </select>
+        </label>
+      </div>
+    </fieldset>
+    <div class="additional_inf">
+      <label class="additional_inf_description"><span class="label_text">Дополнительная информация</span>
+        <textarea class="textarea_additional_inf" th:field="${order.additionalInformation}"></textarea>
+      </label>
+    </div>
+    <label class="forwarder_BY_inf"><span class="label_text">Экспедитор BY</span>
+      <select th:field="${order.userForwarderBY.id}">
+        <option th:each ="user : ${users}" th:value="${user.id}" th:utext="${user.name}"></option>
+      </select>
+    </label>
+    <div class="add_order_submit">
+      <input type="submit" class="add_order_submit_btn jump_btn" id="add_order_submit_btn" value="Изменить заказ" disabled="disabled" />
+    </div>
+  </form>
+  <script th:src="@{/js/addOrder.js}"></script>
+  <script th:src="@{/validation/order.js}"></script>
+</div>
+
+</body>
+</html>
