@@ -166,7 +166,7 @@ public class OrderAdd {
         return "addOrderP";
     }
 
-    private Carriers setCarrierToAdd(String carrierCompanyName, String carrierContact, String carrierTelephone, String carrierElMail) {
+    static Carriers setCarrierToAdd(String carrierCompanyName, String carrierContact, String carrierTelephone, String carrierElMail) {
         Carriers carrier = new Carriers();
 
         carrier.setCarrierCompanyName(carrierCompanyName);
@@ -177,7 +177,7 @@ public class OrderAdd {
         return carrier;
     }
 
-    private Cargos setCargoToAdd(String cargoDescription, int cargoWeight, int cargoCount, String cargoDocument) {
+    static Cargos setCargoToAdd(String cargoDescription, int cargoWeight, int cargoCount, String cargoDocument) {
         Cargos cargo = new Cargos();
 
         cargo.setCargoDescription(cargoDescription);
@@ -188,7 +188,7 @@ public class OrderAdd {
         return cargo;
     }
 
-    private Loadings setLoadingToAdd(String loadingCompanyName, String loadingAdress, String loadingPostalCode, String loadingCity, String loadingCountry, Date loadingDate, Time loadingTime) {
+    static Loadings setLoadingToAdd(String loadingCompanyName, String loadingAdress, String loadingPostalCode, String loadingCity, String loadingCountry, Date loadingDate, Time loadingTime) {
         Loadings loading = new Loadings();
 
         loading.setLoadingCompanyName(loadingCompanyName);
@@ -202,7 +202,7 @@ public class OrderAdd {
         return loading;
     }
 
-    private Unloadings setUnloadingToAdd(String unloadingClient, String unloadingCity, String unloadingCountry, Date unloadingDate, Time unloadingTime) {
+    static Unloadings setUnloadingToAdd(String unloadingClient, String unloadingCity, String unloadingCountry, Date unloadingDate, Time unloadingTime) {
         Unloadings unloading = new Unloadings();
 
         unloading.setUnloadingClient(unloadingClient);
@@ -214,7 +214,7 @@ public class OrderAdd {
         return unloading;
     }
 
-    private Users setUserForwarderBYToAdd(int userForwarderBYid) {
+    static Users setUserForwarderBYToAdd(int userForwarderBYid) {
         Users userForwarderBY = new Users();
 
         userForwarderBY.setId(userForwarderBYid);
@@ -222,7 +222,7 @@ public class OrderAdd {
         return userForwarderBY;
     }
 
-    private Drivers setDriverToAdd(String phoneNumber, String name, String trukRegNumber) {
+    static Drivers setDriverToAdd(String phoneNumber, String name, String trukRegNumber) {
         Drivers driver = new Drivers();
 
         driver.setPhoneNumber(phoneNumber);
@@ -232,7 +232,7 @@ public class OrderAdd {
         return driver;
     }
 
-    private Stocks setStockToAdd(String stockName, String stockAdress, String stockPostalCode, String stockCity, String stockCountry) {
+    static Stocks setStockToAdd(String stockName, String stockAdress, String stockPostalCode, String stockCity, String stockCountry) {
         Stocks stock = new Stocks();
 
         stock.setStockName(stockName);
@@ -244,7 +244,7 @@ public class OrderAdd {
         return stock;
     }
 
-    private String setNumberOfOrder(Date dateOfOrder){
+    private String setNumberOfOrder(Date dateOfOrder) {
         RestTemplate restTemplate = new RestTemplate();
 
         Orders lastOrder = restTemplate.getForObject(URL_ORDER_LAST, Orders.class);
