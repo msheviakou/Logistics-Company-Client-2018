@@ -24,7 +24,7 @@
           <a class="orderInf_buttons__btn PDF_ENG_btn" href="#">PDF ENG</a>
           <a class="orderInf_buttons__btn send_order_PL_btn" href="#">Выслать заказ PL</a>
           <a class="orderInf_buttons__btn send_order_ENG_btn" href="#">Выслать заказ ENG</a>
-          <a class="orderInf_buttons__btn change_order_btn" href="#">Изменить заказ</a>
+          <a class="orderInf_buttons__btn change_order_btn" th:href="'/orderEdit' + '/' + ${order.id}">Изменить заказ</a>
         </div>
         <div class="order_inf">
           <div class="order_inf_row order_inf_row--carrier">
