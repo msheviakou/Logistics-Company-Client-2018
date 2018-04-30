@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -8,7 +8,33 @@
 </head>
 <body>
   <div class="orderInf_container">
-   <h1>sdfffffffffff</h1>
+    <div class="orderInf_header">
+      <h2 class="orderInf_header__text orderInf_header__text--number" th:text="'Заказ ' + ${order.numberOfOrder}"></h2>
+      <h2 class="orderInf_header__text orderInf_header__text--trukRegNumber" th:text="'Per: ' + ${order.carrier.driver.trukRegNumber}"></h2>
+      <th:block th:switch="${order.orderStatus}">
+        <h2 class="orderInf_header__text orderInf_header__text--status" th:case="'Awaiting'">Статус: в ожидании загрузки</h2>
+        <h2 class="orderInf_header__text orderInf_header__text--status" th:case="'Transported'">Статус: транспортируется на склад</h2>
+        <h2 class="orderInf_header__text orderInf_header__text--status" th:case="'Arrived'">Статус: прибыл на склад</h2>
+      </th:block>
+    </div>
+    <div class="orderInf_content">
+      <section class="about_order">
+        <div class="orderInf_buttons">
+          <a class="orderInf_buttons__btn PDF_PL_btn" href="#">PDF PL</a>
+          <a class="orderInf_buttons__btn PDF_ENG_btn" href="#">PDF ENG</a>
+          <a class="orderInf_buttons__btn send_order_PL_btn" href="#">Выслать заказ PL</a>
+          <a class="orderInf_buttons__btn send_order_ENG_btn" href="#">Выслать заказ ENG</a>
+          <a class="orderInf_buttons__btn change_order_btn" href="#">Изменить заказ</a>
+        </div>
+
+      </section>
+      <section class="order_files">
+
+      </section>
+    </div>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/orderInf.css}">
+    <script th:src="@{/js/orderInf.js}"></script>
   </div>
 </body>
 </html>

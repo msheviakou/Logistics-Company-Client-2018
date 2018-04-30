@@ -1,0 +1,5 @@
+;(() => {
+  $('.navigation_panel').remove();
+
+
+})();

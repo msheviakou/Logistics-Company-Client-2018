@@ -1,0 +1,81 @@
+.orderInf_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+/*---------------------HEADER----------------------------*/
+.orderInf_header {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 500px;
+  width: 100%;
+  min-width: 100%;
+  border-bottom: 1px dotted #e2e2e2;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.orderInf_header__text {
+  margin: 5px 0;
+  font-size: 24px;
+  font-weight: lighter;
+  vertical-align: middle;
+}
+
+.orderInf_header__text--number {
+  color: #2679b5;
+}
+
+.orderInf_header__text--trukRegNumber {
+  color: #dd5a43;
+}
+
+.orderInf_header__text--status {
+  margin-right: 100px;
+  font-weight: normal;
+  font-size: 15px;
+  color: #8089a0;
+  padding-top: 5px;
+}
+
+.orderInf_buttons {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.orderInf_buttons__btn {
+  display: block;
+  text-decoration: none;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin-right: 2px;
+  line-height: 14px;
+  color: #fff;
+  font-size: 14px;
+  background-color: #08c;
+}
+/*----------------------------------------------------------*/
+
+/*----------------------------CONTENT-------------------------*/
+.orderInf_content {
+  display: flex;
+  width: 100%;
+}
+
+.about_order {
+  min-width: 60%;
+  width: 60%;
+}
+/*---------------------------------------------------------------*/
+
+/*----------------------------FILES-------------------------------*/
+.order_files {
+  min-width: 40%;
+  width: 40%;
+}
+/*-----------------------------------------------------------------------*/
+
