@@ -10,7 +10,7 @@
   <div class="orderInf_container">
     <div class="orderInf_header">
       <h2 class="orderInf_header__text orderInf_header__text--number" th:text="'Заказ ' + ${order.numberOfOrder}"></h2>
-      <h2 class="orderInf_header__text orderInf_header__text--trukRegNumber" th:text="'Per: ' + ${order.carrier.driver.trukRegNumber}"></h2>
+      <h2 class="orderInf_header__text orderInf_header__text--trukRegNumber" th:text="'Рег. номер: ' + ${order.carrier.driver.trukRegNumber}"></h2>
       <th:block th:switch="${order.orderStatus}">
         <h2 class="orderInf_header__text orderInf_header__text--status" th:case="'Awaiting'">Статус: в ожидании загрузки</h2>
         <h2 class="orderInf_header__text orderInf_header__text--status" th:case="'Transported'">Статус: транспортируется на склад</h2>
