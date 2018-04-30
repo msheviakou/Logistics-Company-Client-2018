@@ -23,11 +23,12 @@ public class UserDelete {
 
         restTemplate.delete(URL_USER + "/" + userId);
 
-        ResponseEntity<Users> responseEntity = restTemplate.getForEntity(URL_USER + "/" + userId, Users.class);
-        if (responseEntity.getStatusCode() == HttpStatus.OK) {
-            System.err.println("xyu");
+        try {
+            restTemplate.getForEntity(URL_USER + "/" + userId, Users.class);
+        }catch (HttpServerErrorException ignored){
             return "redirect:/administration";
         }
+        System.err.println("xyu");
         return "redirect:/administration";
     }
 }
