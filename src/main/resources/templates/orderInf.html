@@ -26,10 +26,127 @@
           <a class="orderInf_buttons__btn send_order_ENG_btn" href="#">Выслать заказ ENG</a>
           <a class="orderInf_buttons__btn change_order_btn" href="#">Изменить заказ</a>
         </div>
-
+        <div class="order_inf">
+          <div class="order_inf_row order_inf_row--carrier">
+            <span class="order_inf_headline">Перевозчик</span>
+            <div class="order_inf_fields">
+              <span class="carrier_company_name" th:text="${order.carrier.carrierCompanyName}"></span>
+              <span th:text="${order.carrier.carrierContact}"></span>
+              <span th:text="${order.carrier.carrierContact}"></span>
+              <span th:text="${order.carrier.carrierElMail}"></span>
+            </div>
+            <span class="date_of_order" th:text="'Дата создания: ' + ${order.dateOfOrder}"></span>
+          </div>
+          <div class="order_inf_row">
+            <span class="order_inf_headline">Регистрационный номер а/в</span>
+            <div class="order_inf_fields">
+              <span th:text="${order.carrier.driver.trukRegNumber}"></span>
+            </div>
+          </div>
+          <div class="order_inf_row">
+            <span class="order_inf_headline">Тел. водителя</span>
+            <div class="order_inf_fields">
+              <span th:text="${order.carrier.driver.phoneNumber}"></span>
+            </div>
+          </div>
+          <div class="order_inf_row">
+            <span class="order_inf_headline">О товаре</span>
+            <div class="order_inf_fields">
+              <span th:text="${order.cargo.cargoDescription}"></span>
+            </div>
+          </div>
+          <div class="order_inf_row">
+            <span class="order_inf_headline">Вес груза</span>
+            <div class="order_inf_fields">
+              <span th:text="${order.cargo.cargoWeight}"></span>
+            </div>
+          </div>
+          <div class="order_inf_row">
+            <span class="order_inf_headline">Количество</span>
+            <div class="order_inf_fields">
+              <span th:text="${order.cargo.cargoCount}"></span>
+            </div>
+          </div>
+          <div class="order_inf_row order_inf_row--document">
+            <span class="order_inf_headline">Документ</span>
+            <div class="order_inf_fields">
+              <span th:text="${order.cargo.cargoDocument}"></span>
+            </div>
+          </div>
+          <div class="order_inf_row">
+            <div class="order_inf_column">
+              <div class="order_inf_row order_inf_row--loadingDateTime">
+                <span class="order_inf_headline">Дата загрузки</span>
+                <div class="order_inf_fields">
+                  <span th:text="${order.loading.loadingDate + ' ' + order.loading.loadingTime}"></span>
+                </div>
+              </div>
+            </div>
+            <div class="order_inf_column">
+              <div class="order_inf_row order_inf_row--unloadingDateTime">
+                <span class="order_inf_headline">Срок поставки</span>
+                <div class="order_inf_fields">
+                  <span th:text="${order.unloading.unloadingDate + ' ' + order.unloading.unloadingTime}"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="order_inf_row">
+            <div class="order_inf_column">
+              <div class="order_inf_row order_inf_row--loading">
+                <span class="order_inf_headline">Адресс загрузки</span>
+                <div class="order_inf_fields">
+                  <span th:text="${order.loading.loadingCompanyName}"></span>
+                  <span th:text="${order.loading.loadingAdress}"></span>
+                  <span th:text="${order.loading.loadingPostalCode}"></span>
+                  <span th:text="${order.loading.loadingCity}"></span>
+                  <span th:text="${order.loading.loadingCountry}"></span>
+                </div>
+              </div>
+            </div>
+            <div class="order_inf_column">
+              <div class="order_inf_row">
+                <span class="order_inf_headline">Адресс разгрузки</span>
+                <div class="order_inf_fields">
+                  <span th:text="${order.unloading.stock.stockName}"></span>
+                  <span th:text="${order.unloading.stock.stockAdress}"></span>
+                  <span th:text="${order.unloading.stock.stockPostalCode}"></span>
+                  <span th:text="${order.unloading.stock.stockCity}"></span>
+                  <span th:text="${order.unloading.stock.stockCountry}"></span>
+                </div>
+              </div>
+              <div class="order_inf_row order_inf_row--client">
+                <span class="order_inf_headline">Клиент</span>
+                <div class="order_inf_fields">
+                  <span th:text="${order.unloading.unloadingClient}"></span>
+                  <span th:text="${order.unloading.unloadingCity}"></span>
+                  <span th:text="${order.unloading.unloadingCountry}"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="order_inf_row">
+            <span class="order_inf_headline">Экспедитор BY</span>
+            <div class="order_inf_fields">
+              <span th:text="${order.userForwarderBY.name}"></span>
+            </div>
+          </div>
+          <div class="order_inf_row">
+            <span class="order_inf_headline">Сумма</span>
+            <div class="order_inf_fields">
+              <span th:text="${order.freightCost + ' EUR Нетто'}"></span>
+            </div>
+          </div>
+          <div class="order_inf_row order_inf_row--forwarderPLName">
+            <span class="order_inf_headline">Заказчик</span>
+            <div class="order_inf_fields">
+              <span th:text="${order.userForwarderPL.name}"></span>
+            </div>
+          </div>
+        </div>
       </section>
       <section class="order_files">
-
+      <!--ТУТ ВЁРСТКА РАБОТЫ С ФАЙЛАМИ-->
       </section>
     </div>
 

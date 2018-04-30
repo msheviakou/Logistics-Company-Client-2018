@@ -81,7 +81,6 @@
                   <option th:each ="stock : ${stocks}" th:value="${stock.id}" th:utext="${stock.stockName}"></option>
                 </select>
               </label>
-              <!-- VALUE в инпутах должны автоматически заполняться после выбора склада из selecta-->
               <label><span class="label_text">Название склада</span><input class="stock_name" type="text" th:field="*{unloading.stock.stockName}" /></label>
               <label><span class="label_text">Адрес склада</span><input class="stock_address" type="text" th:field="*{unloading.stock.stockAdress}" /></label>
               <label><span class="label_text">Почтовый индекс</span><input class="stock_postal_code" type="text" th:field="*{unloading.stock.stockPostalCode}" /></label>

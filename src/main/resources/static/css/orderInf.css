@@ -70,6 +70,66 @@
   min-width: 60%;
   width: 60%;
 }
+
+.order_inf {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 20px;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 13px;
+}
+
+.order_inf_row {
+  display: flex;
+  justify-content: flex-start;
+  min-width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px dotted #d5e4f1;
+}
+
+.order_inf_row--document,
+.order_inf_row--forwarderPLName,
+.order_inf_row--loading,
+.order_inf_row--client,
+.order_inf_row--loadingDateTime,
+.order_inf_row--unloadingDateTime
+{
+  border: none;
+}
+
+.order_inf_headline {
+  padding-right: 10px;
+  color: #667e99;
+  text-align: right;
+  width: 120px;
+  max-width: 120px;
+}
+
+.order_inf_fields {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+}
+
+.order_inf_column {
+  display: flex;
+  width: 50%;
+  max-width: 50%;
+  flex-direction: column;
+}
+
+.carrier_company_name {
+  font-weight: bold;
+  font-style: normal;
+  line-height: 20px;
+  color: #393939;
+}
+
+.date_of_order {
+  margin-left: 200px;
+}
+
 /*---------------------------------------------------------------*/
 
 /*----------------------------FILES-------------------------------*/
