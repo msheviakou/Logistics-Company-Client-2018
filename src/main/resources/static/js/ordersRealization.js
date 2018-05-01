@@ -23,8 +23,25 @@
         }
 
       },
+      dom: '<"tooltip_container">frtip',
 
     });
+
+  $('div.tooltip_container').html(
+    `<div class="tooltip_row">
+           <a href="#" class="tooltip">
+             <i class="fas fa-info-circle"></i>
+             <span class="tooltip_text">статус заказа</span>
+              <span class="tooltip-content">
+                <ul class="orders_tips_list">
+                  <li class="order_tip order_tip--awaiting">в ожидании загрузки</li>
+                  <li class="order_tip order_tip--transported">транспортируется на склад</li>
+                  <li class="order_tip order_tip--arrived">прибыл на склад</li>
+                </ul>
+              </span>
+           </a>
+         </div>`
+  );
 
   ordersRealizationTable.click(function (event) {
     let { target } = event;

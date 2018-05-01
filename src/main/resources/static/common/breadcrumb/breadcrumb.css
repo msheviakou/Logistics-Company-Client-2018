@@ -87,8 +87,18 @@
   background-color: #1abc9c;
 }
 
+/*.breadcrumb_list_item a:last-child:hover {*/
+  /*cursor: none;*/
+  /*background-color: #3498db;*/
+/*}*/
+
+a.current_place_on_site:hover {
+  cursor: default;
+  background-color: #2980b9;
+}
+
 .breadcrumb_list_item a:hover:before {
-  border-color: #1abc9c;
+  /*border-color: #1abc9c;*/
   border-left-color: transparent;
 }
 
@@ -96,15 +106,15 @@
   border-left-color: #1abc9c;
 }
 
-.breadcrumb_list_item a:active {
-  background-color: #16a085;
-}
+/*.breadcrumb_list_item a:active {*/
+  /*background-color: #16a085;*/
+/*}*/
 
-.breadcrumb_list_item a:active:before {
-  border-color: #16a085;
-  border-left-color: transparent;
-}
+/*.breadcrumb_list_item a:active:before {*/
+  /*border-color: #16a085;*/
+  /*border-left-color: transparent;*/
+/*}*/
 
-.breadcrumb_list_item a:active:after {
-  border-left-color: #16a085;
-}
+/*.breadcrumb_list_item a:active:after {*/
+  /*border-left-color: #16a085;*/
+/*}*/
