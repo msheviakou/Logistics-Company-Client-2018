@@ -1,23 +1,10 @@
-$('#addOrderForm input').on('keyup blur', function () {
+$('#addOrderForm input').on('keyup', function () {
     if ($('#addOrderForm').valid()) {
         console.log(1);
         $('#add_order_submit_btn').prop('disabled', false);
     } else {
         console.log(2);
         $('#add_order_submit_btn').prop('disabled', 'disabled');
-    }
-});
-
-$.validator.setDefaults({
-   highlight: function (element) {
-       $(element)
-           .closest('.label_text')
-           .addClass('has-error');
-   },
-   unhighlight: function (element) {
-       $(element)
-           .closest('.label_text')
-           .removeClass('has-error');
     }
 });
 
@@ -56,10 +43,10 @@ $('#addOrderForm').validate({
             digits: true
         },
         "loading.loadingDate": {
-            date : {goodDate: true}
+            required: true
         },
         "unloading.unloadingDate": {
-            date : {goodDate: true}
+            required: true
         }
     },
 
@@ -69,16 +56,16 @@ $('#addOrderForm').validate({
             minlength: "Контактный телефон должен содержать хотя бы 7 символов.",
             maxlength: "Контактный телефон не должен превышать 7 символов."
         },
+        "carrier.driver.phoneNumber": {
+            digits: "Телефон водителя должен содержать только цифры.",
+            minlength: "Телефон водителя должен содержать хотя бы 7 символов.",
+            maxlength: "Телефон водителя не должен превышать 7 символов."
+        },
         "cargo.cargoWeight": {
             digits: "Вес груза должен содержать только цифры."
         },
         "cargo.cargoCount": {
             digits: "Количество груза должно содержать только цифры."
-        },
-        "carrier.driver.phoneNumber": {
-            digits: "Телефон водителя должен содержать только цифры.",
-            minlength: "Телефон водителя должен содержать хотя бы 7 символов.",
-            maxlength: "Телефон водителя не должен превышать 7 символов."
         },
         "carrier.carrierElMail": {
             email: "Введите правильный email адрес."
@@ -102,14 +89,19 @@ $('#addOrderForm').validate({
         "unloading.unloadingDate": {
             required: "Необходимо задать дату разгрузки."
         }
+    },
+
+    errorPlacement: function (error, element) {
+        if (element.attr("name") == "carrier.carrierTelephone" || element.attr("name") == "carrier.driver.phoneNumber" ) {
+            //$('.error_output').empty();
+            //error.appendTo(".error_output");
+            $('.carrier_text').html("Перевозчик " + error.text());
+
+            //error.insertAfter(".carrier_text");
+        }
     }
 });
 
 $.validator.addMethod('goodEmail', function (value) {
     return /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(value);
 });
-
-$.validator.addMethod("goodDate", function(value) {
-        return value.match(/^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/);
-    },
-);
