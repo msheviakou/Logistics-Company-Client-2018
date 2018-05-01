@@ -1,3 +1,117 @@
+/*----------------------------TOOLTIP----------------------*/
+.tooltip_container {
+  float: left;
+}
+
+.tooltip_row {
+  display: flex;
+  margin: auto;
+}
+
+.fa-info-circle {
+  font-size: 18px;
+  color: #3498db;
+}
+
+.tooltip_text {
+  margin-left: 5px;
+}
+
+.orders_tips_list {
+  list-style: none;
+  padding-left: 20px;
+  margin: 0;
+  font-size: 15px;
+}
+
+.order_tip:before {
+  content: "•";
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em
+}
+
+.order_tip--awaiting {
+  color: #E69797;
+}
+
+.order_tip--transported {
+  color: #ffe784;
+}
+
+.order_tip--arrived {
+  color: #D1FF94;
+}
+
+/* TOOLTIP */
+.tooltip {
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  color: #000000;
+  display: flex;
+  height: 25px;
+  letter-spacing: 2px;
+  padding: .8em 0;
+  transition: all .3s ease;
+  margin: 0 .2em 0 .5em;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.tooltip:hover {
+  overflow: visible;
+  color: rgba(5,168,255,1);
+}
+
+.tooltip:hover .tooltip-content {
+  opacity: 1;
+}
+
+.tooltip .tooltip-content {
+  /*background: r gba(5,168,255, 1);*/
+  background: rgba(41,44,47, 1);
+  box-shadow: 0 5px 25px 5px rgba(205, 210, 214, 1);
+  box-sizing: border-box;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  max-width: 200px;
+  min-width: 145px;
+  padding: 1em;
+  position: absolute;
+  opacity: 0;
+  transition: all .3s ease;
+}
+
+.tooltip .tooltip-content::after {
+  /*background: rgba(5,168,255, 1);*/
+  background: rgba(41,44,47, 1);
+  content: "";
+  height: 10px;
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 10px;
+}
+
+.tooltip-content {
+  left: calc(100% + 1.5em);
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.tooltip-content::after {
+  left: -5px;
+  margin-top: -5px;
+  top: 50%;
+}
+/*-------------------------------------------------------------*/
+
+
 .ordersRealization_container {
   margin-top: 25px;
 }
