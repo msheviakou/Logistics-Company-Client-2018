@@ -1,26 +1,3 @@
-$('#addOrderForm input').on('keyup blur', function () {
-    if ($('#addOrderForm').valid()) {
-        console.log(1);
-        $('#add_order_submit_btn').prop('disabled', false);
-    } else {
-        console.log(2);
-        $('#add_order_submit_btn').prop('disabled', 'disabled');
-    }
-});
-
-$.validator.setDefaults({
-   highlight: function (element) {
-       $(element)
-           .closest('.label_text')
-           .addClass('has-error');
-   },
-   unhighlight: function (element) {
-       $(element)
-           .closest('.label_text')
-           .removeClass('has-error');
-    }
-});
-
 $('#addOrderForm').validate({
     rules:{
         "carrier.carrierTelephone": {
@@ -56,10 +33,10 @@ $('#addOrderForm').validate({
             digits: true
         },
         "loading.loadingDate": {
-            date : {goodDate: true}
+            required: true
         },
         "unloading.unloadingDate": {
-            date : {goodDate: true}
+            required: true
         }
     },
 
@@ -69,12 +46,6 @@ $('#addOrderForm').validate({
             minlength: "Контактный телефон должен содержать хотя бы 7 символов.",
             maxlength: "Контактный телефон не должен превышать 7 символов."
         },
-        "cargo.cargoWeight": {
-            digits: "Вес груза должен содержать только цифры."
-        },
-        "cargo.cargoCount": {
-            digits: "Количество груза должно содержать только цифры."
-        },
         "carrier.driver.phoneNumber": {
             digits: "Телефон водителя должен содержать только цифры.",
             minlength: "Телефон водителя должен содержать хотя бы 7 символов.",
@@ -83,25 +54,53 @@ $('#addOrderForm').validate({
         "carrier.carrierElMail": {
             email: "Введите правильный email адрес."
         },
+        "cargo.cargoWeight": {
+            digits: "Вес груза должен содержать только цифры."
+        },
+        "cargo.cargoCount": {
+            digits: "Количество груза должно содержать только цифры."
+        },
         "loading.loadingPostalCode": {
-            digits: "Почтовый индекс должен содержать только цифры.",
-            minlength: "Почтовый индекс должен содержать хотя бы 6 символов.",
-            maxlength: "Почтовый индекс не должен превышать 6 символов."
-        },
-        "unloading.stock.stockPostalCode": {
-            digits: "Почтовый индекс должен содержать только цифры.",
-            minlength: "Почтовый индекс должен содержать хотя бы 6 символов.",
-            maxlength: "Почтовый индекс не должен превышать 6 символов."
-        },
-        "freightCost": {
-            digits: "Сумма оплаты должна содержать только цифры."
+            digits: "ПИ содержит только цифры.",
+            minlength: "Введите 6 символов ПИ.",
+            maxlength: "Введите 6 символов ПИ."
         },
         "loading.loadingDate": {
             required: "Необходимо задать дату загрузки."
         },
         "unloading.unloadingDate": {
             required: "Необходимо задать дату разгрузки."
+        },
+        "unloading.stock.stockPostalCode": {
+            digits: "ПИ содержит только цифры.",
+            minlength: "Введите 6 символов ПИ.",
+            maxlength: "Введите 6 символов ПИ."
+        },
+        "freightCost": {
+            digits: "Сумма оплаты должна содержать только цифры."
         }
+    },
+
+    success: function(){
+        $('#add_order_submit_btn').prop('disabled', false);
+    },
+
+    errorPlacement: function (error, element) {
+        if (element.attr("name") == "carrier.carrierTelephone" || element.attr("name") == "carrier.driver.phoneNumber" || element.attr("name") == "carrier.carrierElMail") {
+            $('.carrier_text').html("Перевозчик: " + "<span class='error_text'>" + error.text() + "</span>");
+        } else if (element.attr("name") == "cargo.cargoWeight" || element.attr("name") == "cargo.cargoCount") {
+            $('.cargo_text').html("Груз " + "<span class='error_text'>" + error.text() + "</span>");
+        } else if (element.attr("name") == "loading.loadingPostalCode" || element.attr("name") == "loading.loadingDate") {
+            $('.loading_text').html("Адрес загрузки: " + "<span class='error_text'>" + error.text() + "</span>");
+        } else if (element.attr("name") == "unloading.stock.stockPostalCode" || element.attr("name") == "unloading.unloadingDate") {
+            $('.unloading_text').html("Адрес выгрузки: " + "<span class='error_text'>" + error.text() + "</span>");
+        } else if (element.attr("name") == "freightCost") {
+            $('.payment_text').html("Ставка/Фрахт: " + "<span class='error_text'>" + error.text() + "</span>");
+        } else if (element.attr("name") == "unloading.stock.stockPostalCode") {
+            $('.unloading_text').html("Адрес разгрузки: " + "<span class='error_text'>" + error.text() + "</span>");
+        }
+
+        $('#add_order_submit_btn').prop('disabled', true);
     }
 });
 
@@ -110,8 +109,3 @@ $('#addOrderForm').validate({
 $.validator.addMethod('goodEmail', function (value) {
     return /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(value);
 });
-
-$.validator.addMethod("goodDate", function(value) {
-        return value.match(/^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/);
-    },
-);
