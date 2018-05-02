@@ -1,13 +1,3 @@
-$('#addOrderForm input').on('keyup', function () {
-    if ($('#addOrderForm').valid()) {
-        console.log(1);
-        $('#add_order_submit_btn').prop('disabled', false);
-    } else {
-        console.log(2);
-        $('#add_order_submit_btn').prop('disabled', 'disabled');
-    }
-});
-
 $('#addOrderForm').validate({
     rules:{
         "carrier.carrierTelephone": {
@@ -61,44 +51,56 @@ $('#addOrderForm').validate({
             minlength: "Телефон водителя должен содержать хотя бы 7 символов.",
             maxlength: "Телефон водителя не должен превышать 7 символов."
         },
+        "carrier.carrierElMail": {
+            email: "Введите правильный email адрес."
+        },
         "cargo.cargoWeight": {
             digits: "Вес груза должен содержать только цифры."
         },
         "cargo.cargoCount": {
             digits: "Количество груза должно содержать только цифры."
         },
-        "carrier.carrierElMail": {
-            email: "Введите правильный email адрес."
-        },
         "loading.loadingPostalCode": {
-            digits: "Почтовый индекс должен содержать только цифры.",
-            minlength: "Почтовый индекс должен содержать хотя бы 6 символов.",
-            maxlength: "Почтовый индекс не должен превышать 6 символов."
-        },
-        "unloading.stock.stockPostalCode": {
-            digits: "Почтовый индекс должен содержать только цифры.",
-            minlength: "Почтовый индекс должен содержать хотя бы 6 символов.",
-            maxlength: "Почтовый индекс не должен превышать 6 символов."
-        },
-        "freightCost": {
-            digits: "Сумма оплаты должна содержать только цифры."
+            digits: "ПИ содержит только цифры.",
+            minlength: "Введите 6 символов ПИ.",
+            maxlength: "Введите 6 символов ПИ."
         },
         "loading.loadingDate": {
             required: "Необходимо задать дату загрузки."
         },
         "unloading.unloadingDate": {
             required: "Необходимо задать дату разгрузки."
+        },
+        "unloading.stock.stockPostalCode": {
+            digits: "ПИ содержит только цифры.",
+            minlength: "Введите 6 символов ПИ.",
+            maxlength: "Введите 6 символов ПИ."
+        },
+        "freightCost": {
+            digits: "Сумма оплаты должна содержать только цифры."
         }
     },
 
-    errorPlacement: function (error, element) {
-        if (element.attr("name") == "carrier.carrierTelephone" || element.attr("name") == "carrier.driver.phoneNumber" ) {
-            //$('.error_output').empty();
-            //error.appendTo(".error_output");
-            $('.carrier_text').html("Перевозчик " + error.text());
+    success: function(){
+        $('#add_order_submit_btn').prop('disabled', false);
+    },
 
-            //error.insertAfter(".carrier_text");
+    errorPlacement: function (error, element) {
+        if (element.attr("name") == "carrier.carrierTelephone" || element.attr("name") == "carrier.driver.phoneNumber" || element.attr("name") == "carrier.carrierElMail") {
+            $('.carrier_text').html("Перевозчик: " + "<span class='error_text'>" + error.text() + "</span>");
+        } else if (element.attr("name") == "cargo.cargoWeight" || element.attr("name") == "cargo.cargoCount") {
+            $('.cargo_text').html("Груз " + "<span class='error_text'>" + error.text() + "</span>");
+        } else if (element.attr("name") == "loading.loadingPostalCode" || element.attr("name") == "loading.loadingDate") {
+            $('.loading_text').html("Адрес загрузки: " + "<span class='error_text'>" + error.text() + "</span>");
+        } else if (element.attr("name") == "unloading.stock.stockPostalCode" || element.attr("name") == "unloading.unloadingDate") {
+            $('.unloading_text').html("Адрес выгрузки: " + "<span class='error_text'>" + error.text() + "</span>");
+        } else if (element.attr("name") == "freightCost") {
+            $('.payment_text').html("Ставка/Фрахт: " + "<span class='error_text'>" + error.text() + "</span>");
+        } else if (element.attr("name") == "unloading.stock.stockPostalCode") {
+            $('.unloading_text').html("Адрес разгрузки: " + "<span class='error_text'>" + error.text() + "</span>");
         }
+
+        $('#add_order_submit_btn').prop('disabled', true);
     }
 });
 

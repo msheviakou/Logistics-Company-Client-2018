@@ -51,11 +51,11 @@
       </fieldset>
       <div class="dates">
         <div class="loading_date_and_time">
-          <label><span class="label_text">Дата загрузки</span><input type="text" class="loading_date date" th:field="*{loading.loadingDate}" /></label>
+          <label><span class="label_text">Дата загрузки</span><input type="text" class="loading_date date" required th:field="*{loading.loadingDate}" /></label>
           <input type="text" class="loading_time time" th:field="*{loading.loadingTime}" />
         </div>
         <div class="unloading_date_and_time">
-          <label><span class="label_text">Срок поставки</span><input type="text" class="unloading_date date" th:field="*{unloading.unloadingDate}" /></label>
+          <label><span class="label_text">Срок поставки</span><input type="text" class="unloading_date date" required th:field="*{unloading.unloadingDate}" /></label>
           <input type="text" class="unloading_time time" th:field="*{unloading.unloadingTime}" />
         </div>
       </div>

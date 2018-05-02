@@ -114,6 +114,14 @@ label {
   margin-left: 60px;
 }
 
+.loading_text {
+    min-width: 400px;
+}
+
+.loading_info label {
+    justify-content: flex-start;
+}
+
 .add_order_submit {
   background-color: #f2f2f2;
   height: 13%;
@@ -123,4 +131,9 @@ label {
 
 .error {
   color: red;
+}
+
+.error_text {
+    font-size: 14px;
+    color: red;
 }
