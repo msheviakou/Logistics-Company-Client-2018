@@ -51,7 +51,7 @@
           </label>
           <h3>Добавление пользователя</h3>
           <form th:action="@{/addUser}"
-                th:object="${userObj}" method="POST">
+                th:object="${userObj}" id="addUserForm" method="POST">
             <span>
               <label>Имя</label>
               <input name="name" type="text" placeholder="Имя" required th:field="${userObj.name}" >
@@ -69,16 +69,17 @@
             </span>
             <span>
               <label>Пароль</label>
-              <input name="Password" type="Password" placeholder="Введите пароль" required th:field="${userObj.password}">
+              <input name="Password" type="Password" id="password" placeholder="Введите пароль" required th:field="${userObj.password}">
             </span>
             <span>
-              <label>Пароль</label>
-              <input name="Password_Conf" type="Password" placeholder="Повторите пароль" required>
+              <label>Подтвердите пароль</label>
+              <input type="Password" required placeholder="Подтвердите пароль" id="confirmPassword" name="confirmPassword">
             </span>
             <div class="add_user_buttons">
-              <input type="submit" value="Добавить">
+              <input type="submit" id="addUserButton" value="Добавить" disabled="disabled">
               <input type="reset" value="Очистить">
             </div>
+            <div class="error_output"></div>
           </form>
         </div>
       </div>
@@ -89,6 +90,7 @@
     <link rel="stylesheet" th:href="@{//fonts.googleapis.com/css?family=Montserrat:400,700}" >
     <link rel="stylesheet" th:href="@{/common/modal-windows/addUser.css}">
     <script th:src="@{/js/administration.js}"></script>
+    <script th:src="@{/validation/user.js}"></script>
   </div>
 </body>
 </html>
