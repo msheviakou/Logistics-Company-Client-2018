@@ -42,6 +42,7 @@ public class OrderEdit {
     private int currentOrderId;
     private String currentOrderNumber;
     private Date currentOrderDate;
+    private  String currentOrderStatus;
 
     @RequestMapping(value = {"/orderEdit/{orderId}"}, method = RequestMethod.GET)
     public String getOrder(Model model, @PathVariable("orderId") String orderId) {
@@ -53,6 +54,7 @@ public class OrderEdit {
         currentOrderId = order.getId();
         currentOrderNumber = order.getNumberOfOrder();
         currentOrderDate = order.getDateOfOrder();
+        currentOrderStatus = order.getOrderStatus();
 
         Users[] users = restTemplate.getForObject(URL_USERS_FORWARDERS, Users[].class);
         model.addAttribute("users", users);
@@ -66,9 +68,13 @@ public class OrderEdit {
     @RequestMapping(value = {"/editOrder"}, method = RequestMethod.POST)
     public String editOrder(Model model, @ModelAttribute("order") OrdersForm orderForm) {
 
+        String orderStatus = orderForm.getOrderStatus();
+        if(orderStatus == null)
+            orderStatus = currentOrderStatus;
+
         Orders orderToAdd = new Orders(
                 currentOrderDate, currentOrderNumber,
-                orderForm.getOrderStatus(), orderForm.getFreightCost(),
+                orderStatus, orderForm.getFreightCost(),
                 orderForm.getPaymentPeriod(), orderForm.getAdditionalInformation()
         );
         /* End Setting Order */

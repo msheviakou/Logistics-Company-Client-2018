@@ -24,7 +24,6 @@
           12: "Декабрь",
         };
 
-        //ordersMap = statistics
         let statistics =  {}; // Ключ: количество заказов, значение: месяц (цифры)
 
         listOfOrders.forEach(function (order) {
