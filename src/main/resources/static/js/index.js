@@ -17,13 +17,7 @@ const showViewPage = (name) => {
   });
 };
 
-const changeNavigationText = (text) => {
-  $('.navigation_panel__text').text(text);
-};
 
-const changeBreadCrumbText = (text) => {
-  $('.current_place_on_site').text(text);
-};
 
 const clearDynamicalField = () => {
   $('.content').html('');
@@ -102,7 +96,6 @@ const administration = ({pageName, userLogin}) => {
     success: function (user) {
       changeBreadCrumbText('Администрирование');
       changeNavigationText('Управление пользователями');
-      console.log(user);
       if(user.post !== 'Админ') {
         $('.content').html(
           `<div class="privilege_error">
@@ -120,5 +113,13 @@ const administration = ({pageName, userLogin}) => {
 };
 
 })();
+
+const changeNavigationText = (text) => {
+  $('.navigation_panel__text').text(text);
+};
+
+const changeBreadCrumbText = (text) => {
+  $('.current_place_on_site').text(text);
+};
 
 

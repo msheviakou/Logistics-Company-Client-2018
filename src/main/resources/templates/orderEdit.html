@@ -10,7 +10,7 @@
 <div class="editOrder_container">
   <form th:action="@{/editOrder}" th:object="${order}" id="addOrderForm" method="POST">
     <div class="error_output"></div>
-    <fieldset class="cargo">
+    <fieldset class="cargo_status">
       <legend class="cargo_text">Статус заказа</legend>
       <label class="order_status"><span class="label_text">Статус заказа</span>
         <select th:field="${order.orderStatus}">
