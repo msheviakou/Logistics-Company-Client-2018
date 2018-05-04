@@ -13,11 +13,11 @@
       sSearch: "Поиск:"
     },
     columnDefs: [ {
-        orderable: false,
-        className: 'select-checkbox',
-        targets: 0,
-        width: "10%",
-      },
+      orderable: false,
+      className: 'select-checkbox',
+      targets: 0,
+      width: "10%",
+    },
       // {
       //   width: "15%",
       //   targets: 1,
@@ -85,18 +85,28 @@
   $('.accept_delete_user_btn').click((event)=> {
     let userId = $('.custom-selected').data('userId');
     $.ajax({
-      url: `/deleteUser/${userId}`,
-      method: 'DELETE',
+      url: `http://localhost:8080/user/${userId}`,
+      type: 'DELETE',
       cache: false,
+      crossDomain: true,
+      crossOrigin: true,
+      dataType: 'text',
+      success: function (status) {
+        if(status === '409') {
+          alert("ERROR")
+        } else {
+          changeModalWindowState(mwUserDelete, 'away');
+          $('.custom-selected').remove();
+        }
+      }
+
     });
-    changeModalWindowState(mwUserDelete, 'away');
-    $('.custom-selected').remove();
     return false;
   });
 
   $('.close_add_user_mw_btn').click(() => {
     changeModalWindowState(mwUserAdd, 'away');
-    });
+  });
 
   $('.close_delete_user_mw_btn').click(() => {
     changeModalWindowState(mwUserDelete, 'away');
@@ -104,6 +114,27 @@
 
   $('.decline_delete_user_btn').click(() => {
     changeModalWindowState(mwUserDelete, 'away');
+  });
+
+  $('.user_login_field').focusout(function(event) {
+
+    const userLogin = this.value;
+    $.ajax({
+      url: `http://localhost:8080/user/login/${userLogin}`,
+      type: 'GET',
+      cache: false,
+      crossDomain: true,
+      crossOrigin: true,
+      dataType: 'json',
+      success: function (user) {
+        if(user.id === 0){
+          alert("SUCCESS");
+        }else {
+          alert("ERROR");
+        }
+      }
+
+    });
   });
 
 

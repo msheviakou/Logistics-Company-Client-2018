@@ -169,22 +169,18 @@
 }
 
 
+.privilege_error {
+  margin: 10px 0px;
+  padding:12px;
+  color: #D8000C;
+  background-color: #FFD2D2;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.privilege_error i {
+  margin:10px 22px;
+  font-size:2em;
+  vertical-align:middle;
+}
 
 /* Making the header responsive */
 
