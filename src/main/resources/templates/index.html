@@ -36,7 +36,7 @@
       <a href="#">Pricing</a>
     </nav>
     <ul>
-      <li><a th:utext="${userForm.getPost()}" href="#"></a></li>
+      <li><a class="user_login" th:utext="${userForm.getLogin()}" href="#"></a></li>
       <li><a href="/logout">SignOut</a></li>
     </ul>
   </div>
@@ -65,7 +65,7 @@
   <section class="dynamical_section">
     <div class="breadcrumbs">
       <ul class="breadcrumb_list">
-        <li class="breadcrumb_list_item"><a href="#"><span class="breadcrumb_icon icon-home fas fa-home"></span></a></li>
+        <li class="breadcrumb_list_item home" data-action="home"><a href="#"><span class="breadcrumb_icon icon-home fas fa-home"></span></a></li>
         <li class="breadcrumb_list_item"><a href="#" class="current_place_on_site"><span class="breadcrumb_icon icon-arrow-down"> </span> </a></li>
       </ul>
     </div>
