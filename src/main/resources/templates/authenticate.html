@@ -12,10 +12,14 @@
 			<input placeholder="Login" th:field="*{login}" name="Name" type="text" required="">
 			<!-- <input placeholder="Email Address" name="Email" type="email" required=""> -->
 			<input placeholder="Password" th:field="*{password}" name="Password" type="password" required="">
+      <div class="authorization_error_message" th:if="${errorMessage}">
+        <i class="fa fa-times-circle"></i>
+        Неверный логин или пароль
+      </div>
 			<input type="submit" value="Enter" name="log">
 		</form>
   </main>
-  <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;"></div>
+  <link rel="stylesheet" th:href="@{/libs/font-awesome/css/fontawesome-all.min.css}">
+  <link rel="stylesheet" th:href="@{/css/authorization.css}">
 </body>
-<link rel="stylesheet" th:href="@{/css/authorization.css}">
 </html>

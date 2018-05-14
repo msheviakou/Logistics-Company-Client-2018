@@ -4,7 +4,7 @@
 
     ordersRealizationTable.DataTable({
       lengthChange: false,
-      pageLength: 20,
+      pageLength: 13,
       oLanguage: {
         sSearch: "Поиск:"
       },

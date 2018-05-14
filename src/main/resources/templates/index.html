@@ -17,9 +17,9 @@
   <link rel="stylesheet" type="text/css" th:href="@{https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css}">
   <link rel="stylesheet" type="text/css" th:href="@{https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css}">
 
-  <script async type="text/javascript" charset="utf8" th:src="@{https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js}"></script>
-  <script async type="text/javascript" charset="utf8" th:src="@{https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js}"></script>
-  <script async type="text/javascript" charset="utf8" th:src="@{https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js}"></script>
+  <script type="text/javascript" charset="utf8" th:src="@{https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js}"></script>
+  <script type="text/javascript" charset="utf8" th:src="@{https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js}"></script>
+  <script type="text/javascript" charset="utf8" th:src="@{https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js}"></script>
 
   <link rel="stylesheet" type="text/css" th:href="@{libs/graphs/chartist.min.css}">
 
@@ -30,14 +30,14 @@
 <header class="header">
   <div class="header_limiter">
     <h1><a href="#">Company<span>logo</span></a></h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#" class="selected">Blog</a>
-      <a href="#">Pricing</a>
-    </nav>
+    <!--<nav>-->
+      <!--<a href="#">Home</a>-->
+      <!--<a href="#" class="selected">Blog</a>-->
+      <!--<a href="#">Pricing</a>-->
+    <!--</nav>-->
     <ul>
       <li><a class="user_login" th:utext="${userForm.getLogin()}" href="#"></a></li>
-      <li><a href="/logout">SignOut</a></li>
+      <li><a href="/logout">Выход</a></li>
     </ul>
   </div>
 

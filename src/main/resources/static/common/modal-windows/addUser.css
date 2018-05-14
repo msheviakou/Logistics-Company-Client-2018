@@ -8,7 +8,7 @@ input[type="submit"],a,input[type="reset"]{
 
 .modal.modal_add_user {
   padding:2em;
-  background:rgba(0, 0, 0, 0.22);
+  background:rgba(0, 0, 0, 0.4);
 }
 
 .modal.modal_add_user  h3{

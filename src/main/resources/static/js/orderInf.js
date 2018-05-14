@@ -28,6 +28,10 @@
         if(user.post !== 'Управляющий складом') {
           $('.cargo_status').remove();
         }
+
+        let freightCost = $('.freight_cost').val();
+        console.log(freightCost);
+        $('.freight_cost').val(freightCost.slice(0,freightCost.indexOf('.')));
       },
     });
 
