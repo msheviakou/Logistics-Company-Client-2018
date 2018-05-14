@@ -108,7 +108,7 @@
     <fieldset class="payment">
       <legend class="payment_text">Ставка/Фрахт</legend>
       <div class="about_payment_row">
-        <label><span class="label_text">Сумма</span><input type="text" th:field="${order.freightCost}" /></label>
+        <label><span class="label_text">Сумма</span><input type="text" class="freight_cost" th:field="${order.freightCost}" /></label>
         <label><span class="label_text">Срок оплаты</span>
           <select th:field="${order.paymentPeriod}" >
             <option value="7">7 дней</option>

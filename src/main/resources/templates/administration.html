@@ -8,6 +8,10 @@
 </head>
 <body>
   <div class="administration_container">
+    <div class="deleteUser_error_message">
+      <i class="fa fa-times-circle"></i>
+      Пользователь задействован в заказе!
+    </div>
   <div class="wrapper_users_table">
     <table id="users_table" class="cell-border">
       <thead>
@@ -58,7 +62,7 @@
             </span>
             <span>
               <label>Логин</label>
-              <input name="login" type="text" placeholder="Логин" required th:field="${userObj.login}">
+              <input class="user_login_field" name="login" type="text" placeholder="Логин" required th:field="${userObj.login}">
             </span>
             <span>
               <label>Должность</label>
@@ -72,9 +76,13 @@
               <input name="Password" type="Password" id="password" placeholder="Введите пароль" required th:field="${userObj.password}">
             </span>
             <span>
-              <label>Подтвердите пароль</label>
+              <label>Пароль</label>
               <input type="Password" required placeholder="Подтвердите пароль" id="confirmPassword" name="confirmPassword">
             </span>
+            <div class="addUser_error_message">
+              <i class="fa fa-times-circle"></i>
+              Логин уже существует
+            </div>
             <div class="add_user_buttons">
               <input type="submit" id="addUserButton" value="Добавить" disabled="disabled">
               <input type="reset" value="Очистить">

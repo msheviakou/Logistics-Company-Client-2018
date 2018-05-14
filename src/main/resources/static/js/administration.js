@@ -93,10 +93,13 @@
       dataType: 'text',
       success: function (status) {
         if(status === '409') {
-          alert("ERROR")
+          mwUserDelete.dataset.state = 'away';
+          $('body').removeClass('modal-active');
+          $('.deleteUser_error_message').css('display', 'block');
         } else {
           changeModalWindowState(mwUserDelete, 'away');
           $('.custom-selected').remove();
+          $('.deleteUser_error_message').css('display', 'none');
         }
       }
 
@@ -127,14 +130,16 @@
       crossOrigin: true,
       dataType: 'json',
       success: function (user) {
-        if(user.id === 0){
-          alert("SUCCESS");
-        }else {
-          alert("ERROR");
+        if (user.id !== 0) {
+          // alert('yooooo');
+          // $('.user_login_field').val("Логин уже существует");
+          $('.addUser_error_message').css('display', 'block');
+        } else {
+          $('.addUser_error_message').css('display', 'none');
         }
       }
 
-    });
+    })
   });
 
 

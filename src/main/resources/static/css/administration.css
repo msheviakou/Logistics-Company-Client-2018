@@ -7,3 +7,21 @@
 .modal.modal_add_user {
   min-width: 500px;
 }
+
+
+.addUser_error_message, .deleteUser_error_message {
+  display: none;
+  width: 100%;
+  margin: 10px auto;
+  padding: 0 12px;
+  color: #D8000C;
+  background-color: #FFD2D2;
+  text-align: left;
+}
+
+.addUser_error_message i,
+.deleteUser_error_message i{
+  margin:10px 22px;
+  font-size:2em;
+  vertical-align:middle;
+}
